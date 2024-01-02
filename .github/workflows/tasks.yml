@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3i l
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
