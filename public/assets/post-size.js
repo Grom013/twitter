@@ -1,17 +1,6 @@
 export default function postSize(str) {
-  const end = ['.org', '.com', '.ru', '.net'];
-  const start = ['http', 'https', 'www'];
+  const Regex = /(?:https?:\/\/)?(?:www\.)?[^\s]+\.(?:com|org|net|ru|io|gov|edu|uk|de|jp)(?:\S*)?/gi;
+  const noLink = str.replace(Regex, '').trim();
 
-  const arr = str.split(' ');
-  for (let i = 0; i < arr.length; i++) {
-    if (start.some((s) => arr[i].includes(s)) || end.some((d) => arr[i].includes(d))) {
-      arr.splice(i, i);
-    }
-  }
-  return arr.join(' ').length;
+  return noLink.length > 0 ? noLink.length : 0;
 }
-
-const message1 = 'Всем привет! burtovoy.org github.com';
-postSize(message1); // вернет 12
-const message2 = 'Привет! https://github.com scss';
-postSize(message2); // вернет 12
