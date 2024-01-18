@@ -1,4 +1,4 @@
-function hashTag(str) {
+export default function hashTag(str) {
   return str.split(' ').map((s) => {
     if (s.startsWith('#')) {
       return s.replace(s, `<a href="/search?tag=${s.slice(1)}" >${s}</a>`);
