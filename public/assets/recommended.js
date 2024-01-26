@@ -1,19 +1,39 @@
 export default function similar(profile, profiles, count) {
-  const tags = profile.posts.flatMap(((p) => p.split(' ').filter((t) => t.startsWith('#'))));
+  const extractTags = (posts) => {
+    const tags = [];
+    posts.forEach((post) => {
+      const words = post.split(' ');
+      words.forEach((word) => {
+        if (word.startsWith('#')) {
+          tags.push(word);
+        }
+      });
+    });
+    return tags;
+  };
 
-  const profilesRec = profiles.map((p) => {
-    const profilesTags = p.posts
-      .flatMap((post) => post.split(' ')
-        .filter((t) => t.startsWith('#')));
+  const countIntersection = (arr1, arr2) => {
+    const set1 = new Set(arr1);
+    const set2 = new Set(arr2);
+    return [...set1].filter((tag) => set2.has(tag)).length;
+  };
 
-    const countTags = tags.filter((t) => profilesTags.includes(t)).length;
-    return { id: p.id, countTags };
-  })
-    .sort((a, b) => b.countTags - a.countTags)
-    .slice(0, count)
-    .map((profile) => profile.id);
-  return profilesRec;
+  const profileTags = extractTags(profile.posts);
+
+  const sortedRecommendations = profiles
+    .filter((otherProfile) => otherProfile.id !== profile.id)
+    .map((otherProfile) => {
+      const otherProfileTags = extractTags(otherProfile.posts);
+      const intersectionCount = countIntersection(profileTags, otherProfileTags);
+
+      return { id: otherProfile.id, intersectionCount };
+    })
+    .sort((a, b) => b.intersectionCount - a.intersectionCount);
+
+  return sortedRecommendations.slice(0, count).map((recommendation) => recommendation.id);
 }
+
+// Пример использования
 const profile = {
   id: 256,
   posts: [
@@ -25,20 +45,16 @@ const profile = {
 const profiles = [
   {
     id: 257,
-    posts: [
-      'Сегодня вышла новая версия #javascript',
-      'как вам новая версия #javascript?',
-    ],
+    posts: ['Сегодня вышла новая версия #javascript', 'как вам новая версия #javascript?'],
   },
   {
     id: 258,
-    posts: [
-      '#сегодня мне не понравилась новая песня #linkinpark',
-    ],
+    posts: ['#сегодня мне не понравилась новая песня #linkinpark'],
   },
 ];
-const count1 = 2;
-similar(profile, profiles, count1); // вернет [258].
 
-const count2 = 1;
-console.log(similar(profile, profiles, count2));
+const count1 = 1;
+console.log(similar(profile, profiles, count1)); // Вернет [258]
+
+const count2 = 2;
+console.log(similar(profile, profiles, count2)); // Вернет [258, 257]
