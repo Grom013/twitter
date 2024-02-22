@@ -44,7 +44,7 @@
         content: url("../img/people.png");
     }
     .statistic {
-        position: absolute;
+        /*position: absolute;*/
         min-width: 360px;
         height: 457px;
         padding-top: 22px;
