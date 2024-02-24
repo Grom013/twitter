@@ -1,6 +1,5 @@
 @media screen and (min-width: 360px) and (max-width: 412px) {
     .container {
-        /*width: 90%;*/
         max-width: 600px;
         margin: 0 auto;
         padding: 24px 16px;
@@ -44,17 +43,14 @@
         content: url("../img/people.png");
     }
     .statistic {
-        position: absolute;
-        min-width: 360px;
-        height: 457px;
         padding-top: 22px;
+        min-width: 360px;
         min-height: 457px;
         background-color: #0057FF;
     }
     .stat{
         color:#ffffff;
         margin-bottom: 45px;
-        margin-top: 20px;
     }
     .stat-number{
         font-family: Lato, sans-serif;
@@ -69,9 +65,6 @@
         font-weight: 400;
         line-height: 22px;
         text-align: center;
-    }
-    .last-messages{
-
     }
     .last-messages-title{
         font-family: Lato,sans-serif;
