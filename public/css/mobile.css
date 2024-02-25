@@ -1,9 +1,12 @@
 @media screen and (min-width: 360px) and (max-width: 412px) {
     .container {
-        /*width: 90%;*/
         max-width: 600px;
         margin: 0 auto;
-        padding: 24px 16px;
+        padding: 24px 0 0;
+    }
+    .header {
+        margin-bottom: 25px;
+
     }
     .header_logo {
         display: flex;
@@ -14,27 +17,29 @@
         font-family: Arial, sans-serif;
         font-size: 33px;
         text-align: center;
+        margin: 0 auto;
         font-weight: 600;
+        width: 328px;
     }
     .btn-reg {
         display: block;
-        margin-top: 20px;
         border: none;
         background: #0057FF;
         color: #fff;
-        width: 100%;
+        width: 328px;
+        margin: 20px auto;
         border-radius: 10px;
         height: 52px;
         cursor: pointer;
     }
     .btn-login {
         display: block;
-        margin-top: 20px;
         border: 1px solid #0057FF;
         color: #0057FF;
         border-radius: 10px;
         background: #fff;
-        width: 100%;
+        width: 328px;
+        margin: 20px auto;
         height: 52px;
         cursor: pointer;
     }
@@ -57,14 +62,14 @@
         margin-top: 20px;
     }
     .stat-number{
-        font-family: Lato, sans-serif;
+        font-family: Roboto, sans-serif;
         font-size: 48px;
         font-weight: 300;
         line-height: 58px;
         text-align: center;
     }
     .stat_desc{
-        font-family: Lato,sans-serif;
+        font-family: Roboto,sans-serif;
         font-size: 18px;
         font-weight: 400;
         line-height: 22px;
@@ -74,7 +79,7 @@
 
     }
     .last-messages-title{
-        font-family: Lato,sans-serif;
+        font-family: Roboto,sans-serif;
         margin-top: 21px;
         margin-left: 16px;
         font-size: 24px;
@@ -92,7 +97,7 @@
         cursor: pointer;
     }
     .post-main-name {
-        font-family: Lato,sans-serif;
+        font-family: Roboto,sans-serif;
         font-size: 14px;
         font-weight: 900;
         line-height: 18px;
@@ -100,7 +105,7 @@
         color: #1D1E22;
     }
     .post-nickname {
-        font-family: Lato, sans-serif;
+        font-family: Roboto, sans-serif;
         font-size: 14px;
         font-weight: 400;
         line-height: 18px;
@@ -108,7 +113,7 @@
         color: #ABACB1;
     }
     .post-time {
-        font-family: Lato, sans-serif;
+        font-family: Roboto, sans-serif;
         font-size: 10px;
         font-weight: 400;
         line-height: 10px;
@@ -116,7 +121,7 @@
         color: #ABACB1;
     }
     .message-desc {
-        font-family: Lato, sans-serif;
+        font-family: Roboto, sans-serif;
         font-size: 16px;
         font-weight: 400;
         line-height: 19px;
@@ -138,7 +143,7 @@
         width: 205px;
     }
     .post-repost, .post-like, .post-share {
-        font-family: Lato, sans-serif;
+        font-family: Roboto, sans-serif;
         font-size: 14px;
         font-weight: 400;
         line-height: 24px;
