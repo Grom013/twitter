@@ -2,7 +2,11 @@
     .container {
         max-width: 600px;
         margin: 0 auto;
-        padding: 24px 16px;
+        padding: 24px 0 0
+    }
+    .header {
+        padding: 0 16px;
+        margin-bottom: 24px;
     }
     .header_logo {
         display: flex;
