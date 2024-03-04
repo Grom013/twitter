@@ -96,6 +96,7 @@
         margin: 0 auto;
     }
     .last-messages {
+        position: relative;
         width: 633px;
         background-color: white;
         border-radius: 10px;
@@ -174,5 +175,13 @@
         margin-bottom: 15px;
         width: 520px;
         height: 342px;
+    }
+    .whitening {
+        position: absolute;
+        width: 100%;
+        height: 320px;
+        background: linear-gradient(0deg, #f4f5f6 21.87%, rgba(244, 245, 246, 0) 100%);
+        right: 0;
+        bottom: 0;
     }
 }
