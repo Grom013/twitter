@@ -1,4 +1,19 @@
-import postSize from './post-size.js';
+const closeModal = document.querySelectorAll('.close');
+const openModal = document.querySelector('.btn-reg');
+const mod = document.querySelector('.regModal');
 
-alert(postSize('Всем привет!'));
-console.log(postSize('Всем привет!'));
+closeModal.forEach((element) => {
+  element.addEventListener('click', () => {
+    mod.style.display = 'none';
+  });
+});
+
+openModal.addEventListener('click', () => {
+  mod.style.display = 'block';
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === mod) {
+    mod.style.display = 'none';
+  }
+});
