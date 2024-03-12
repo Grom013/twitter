@@ -1,0 +1,94 @@
+{
+  "static": {
+    "users": 481,
+    "allMessages": "140K",
+    "todayMessages": 389
+  },
+  "lastMessages": [
+    {
+      "id": 1,
+      "avatar": "",
+      "name": "Vincent",
+      "lastname": "Bera",
+      "nickName": "roizmangbn",
+      "message": "У них там все немного не так. В смысле, у них там все точно так же, как и здесь, только немного по-другому.",
+      "timeMessage": 28,
+      "repost": 21,
+      "like": 23,
+      "share": 9,
+      "img": ""
+    },
+    {
+      "id": 2,
+      "avatar": "",
+      "name": "Elon",
+      "lastname": "Musk",
+      "nickName": "elonmusk",
+      "message": "Has anyone seen web3? I can’t find it.",
+      "timeMessage": 720,
+      "repost": 21,
+      "like": 23,
+      "share": 9,
+      "img": ""
+    },
+    {
+      "id": 3,
+      "avatar": "",
+      "name": "Александр",
+      "lastname": "",
+      "nickName": "sportsu",
+      "message": "Прикладываю фотки с последнего матча. С каждым днем играю все лучше. Еще пару лет и можно на Олимпиаду ехать!",
+      "timeMessage": 720,
+      "repost": 21,
+      "like": 23,
+      "share": 9,
+      "img": "img/sport.png"
+    },
+    {
+      "id": 4,
+      "avatar": "",
+      "name": "Мия",
+      "lastname": "Уолес",
+      "nickName": "mia",
+      "message": "Идут по улице три помидора: папа-помидор, мама-помидор и ребенок-помидор. Ребенок-помидор начинает отставать.Папа-помидор разозлился, подбегает к ребенку-помидору, раздавливает всмятку...и говорит: «Догоняй, кетчуп!",
+      "timeMessage": 720,
+      "repost": 21,
+      "like": 23,
+      "share": 9,
+      "img": ""
+    }
+  ],
+  "topics": [
+    {
+      "id": 1,
+      "name": "Новый Год 2022",
+      "location": "Россия",
+      "messages": 941
+    },
+    {
+      "id": 2,
+      "name": "BTS",
+      "location": "Мир",
+      "messages": 29718
+    },
+    {
+      "id": 3,
+      "name": "Украина",
+      "location": "Россия",
+      "messages": 941120
+    },
+    {
+      "id": 4,
+      "name": "Дудь",
+      "location": "Россия",
+      "messages": 4185
+    }
+  ],
+  "blogs": [
+    {
+      "id": 1,
+      "name": "Хабр Научпол",
+      "nickname": "habr_popci"
+    }
+  ]
+}
