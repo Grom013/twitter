@@ -1,0 +1,24 @@
+{
+  "pictures": [
+    {
+      "id": 1,
+      "avatarUrl": "img/vincent.png"
+    },
+    {
+      "id": 2,
+      "avatarUrl": "img/elon.png"
+    },
+    {
+      "id": 3,
+      "avatarUrl": "img/alex.png"
+    },
+    {
+      "id": 4,
+      "avatarUrl": "img/mia.png"
+    },
+    {
+      "id": 5,
+      "avatarUrl": "img/sport.png"
+    }
+  ]
+}
