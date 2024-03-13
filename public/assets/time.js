@@ -1,4 +1,4 @@
-export default function time(min) {
+export default function timeFn(min) {
   function conjugationMinutes(min) {
     const remainderOfTenMinutes = min % 10;
     const remainderOfHundredMinutes = min % 100;
