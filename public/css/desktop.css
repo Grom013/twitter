@@ -103,8 +103,37 @@
         border-radius: 10px;
         padding: 20px;
     }
-    .hashtags-block {
+    .hashtags-bloggers {
         width: 312px;
+    }
+    .actual, .bloggers {
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px 10px;
+    }
+    .top-name {
+        font-family: Roboto, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+        color: #1D1E22;
+    }
+    .top-message{
+        font-family: Roboto, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 16px;
+        color: #ABACB1;
+    }
+    .bloggers {
+        margin-top: 10px;
+    }
+    .hashtags-bloggers-title {
+        font-family: Roboto, sans-serif;
+        font-size: 18px;
+        font-weight: 900;
+        line-height: 32px;
+        color: #1D1E22;
     }
     .post-avatar img{
         width: 64px;
@@ -177,6 +206,31 @@
         margin-bottom: 15px;
         width: 520px;
         height: 342px;
+    }
+    .bloggers-name {
+        margin-top: 8px;
+        font-family: Roboto, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 18px;
+        text-align: left;
+    }
+    .bloggers-nickname {
+        font-family: Roboto, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        text-align: left;
+        color: #ABACB1;
+    }
+    .bloggers-btn {
+        margin-top: 8px;
+        background: none;
+        color: #0057FF;
+        width: 69px;
+        height: 24px;
+        border: 1px solid #0057FF;
+        border-radius: 5px;
     }
     .whitening {
         position: absolute;
@@ -340,4 +394,53 @@
     .submit-btn:hover {
         background-color: #0056b3;
     }
+
+    .skeleton-box {
+        display: inline-block;
+        height: 1em;
+        position: relative;
+        overflow: hidden;
+        background-color: #DDDBDD;
+
+        &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                    90deg,
+                    rgba(#fff, 0) 0,
+                    rgba(#fff, 0.2) 20%,
+                    rgba(#fff, 0.5) 60%,
+                    rgba(#fff, 0)
+            );
+            animation: shimmer 5s infinite;
+            content: '';
+        }
+
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    }
+// OBJECTS
+
+.o-media {
+    display: flex;
+
+    &__body {
+        flex-grow: 1;
+        margin-left: 1em;
+    }
+}
+
+
+
+    li{
+        list-style-type: none;
+    }
+
 }
