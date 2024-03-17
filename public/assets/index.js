@@ -1,5 +1,6 @@
 import mail from './mail.js';
 import { fetchData, fetchPictures } from './fetchData.js';
+import timeFn from './time.js';
 
 const closeModal = document.querySelectorAll('.close');
 const openModal = document.querySelector('.btn-reg');
@@ -18,6 +19,17 @@ const usersElement = document.getElementById('users');
 const todayMessagesElement = document.getElementById('todayMessages');
 const allMessagesElement = document.getElementById('allMessages');
 
+function updatePostTime() {
+  const postTimeElements = document.querySelectorAll('.post-time');
+  postTimeElements.forEach((element) => {
+    const { time } = element.dataset;
+    const minutesAgo = timeFn(Math.floor((Date.now() - Number(time)) / 60000));
+    element.textContent = `${minutesAgo}`;
+  });
+}
+
+// Вызываем функцию обновления времени каждую минуту
+setInterval(updatePostTime, 60000);
 function displayMessages(messages, pictures) {
   const messageContainer = document.querySelector('.last-messages');
   if (!messageContainer) return;
@@ -26,10 +38,7 @@ function displayMessages(messages, pictures) {
   messages.forEach((message) => {
     const picture = pictures.find((pic) => pic.id === message.id);
     const pictureUrl = picture ? picture.avatarUrl : '';
-    let postsImg = '';
-    if (message.img) {
-      postsImg = `<img class="posts-img" src="${message.img}" alt="" />`;
-    }
+
     messagesHtml += `
       <div class="last-messages-post">
         <a class="post-avatar"><img src="${pictureUrl}" alt=""/></a>
@@ -39,11 +48,10 @@ function displayMessages(messages, pictures) {
               <div class="post-main-name">${message.name} ${message.lastname}</div>
               <div class="post-nickname">@${message.nickName}</div>
             </div>
-            <div class="post-time">${message.timeMessage} минут назад</div>
+            <div class="post-time"  data-time="${message.timeMessage}"></div>
           </div>
           <div class="message-desc">${message.message}</div>
-          
-          ${postsImg}
+            ${message.img ? `<img class="posts-img" src="${message.img}" alt="" />` : ''}
           <div class="post-icons">
             <div class="post-repost"><img alt="icon1" src="img/repost.svg"/> ${message.repost}</div>
             <div class="post-like"><img alt="icon2" src="img/like.svg"/> ${message.like}</div>
@@ -57,6 +65,38 @@ function displayMessages(messages, pictures) {
   });
 
   messageContainer.innerHTML = messagesHtml;
+  updatePostTime();
+}
+
+function displayTopics(topics) {
+  const topicsContainer = document.querySelector('.actual-post');
+  let topicsHtml = '';
+  topics.forEach((topic) => {
+    topicsHtml += `
+      <div dataId="${topic.id}">
+      <div class="top-name">#${topic.name}</div>
+      <div class="top-message" style="margin-bottom: 10px;">${topic.messages} сообщений</div>
+</div>
+      `;
+    topicsContainer.innerHTML = topicsHtml;
+  });
+}
+function displayBlogs(blogs) {
+  const blogContainer = document.querySelector('.bloggers-block');
+  let blogHtml = '';
+  blogs.forEach((blog) => {
+    blogHtml += `
+      <div style="display: flex;justify-content: space-between;margin-top: 10px;">
+      <div><img src="${blog.img}" alt=""/></div>
+        <div class="bloggers-name">
+            <div>${blog.name}</div>
+            <div class="bloggers-nickname">${blog.nickname}</div>
+        </div>
+        <button class="bloggers-btn">Читать</button>
+      </div>
+      `;
+  });
+  blogContainer.innerHTML = blogHtml;
 }
 
 async function view() {
@@ -70,12 +110,19 @@ async function view() {
     if (data && pictures) {
       displayMessages(data.lastMessages, pictures.pictures);
     }
+    if (data) {
+      displayTopics(data.topics);
+    }
+    if (data && pictures) {
+      displayBlogs(data.blogs);
+    }
   } catch (error) {
     console.error('Error', error);
   }
 }
 
 view();
+
 submitBtn.addEventListener('click', () => {
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();

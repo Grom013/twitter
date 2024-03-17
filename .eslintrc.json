@@ -15,6 +15,7 @@
     "no-param-reassign": "off",
     "prefer-arrow-callback": 0,
     "no-undef": "off",
+    "no-promise-executor-return": "off",
     "mocha/prefer-arrow-callback": 2,
     "linebreak-style": 0,
     "mocha/no-identical-title": "off",
