@@ -1,0 +1,56 @@
+@media screen and (min-width: 1280px) {
+    .container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1280px;
+        background-color: white;
+        margin: 0 auto;
+    }
+    .header_wrapper {
+        background-color: white;
+    }
+    .header {
+        padding-top: 43px;
+        margin-left: 64px;
+        height: 640px;
+    }
+    .header_logo {
+        width: 42px;
+        height: 44px;
+        margin-bottom: 20px;
+    }
+    .header_text {
+        font-family: Roboto, sans-serif;
+        font-size: 48px;
+        font-weight: 900;
+        line-height: 58px;
+        text-align: left;
+        width: 437px;
+    }
+    .btn-login, .btn-reg {
+        margin-top: 12px;
+        display: block;
+        font-size: 18px;
+        width: 260px;
+        height: 52px;
+        border-radius: 10px;
+    }
+    .btn-reg {
+        background: #0057FF;
+        color: #ffffff;
+        border: none;
+    }
+    .btn-login {
+        background: white;
+        color: #0057FF;
+        border: 1px solid #0057FF;
+    }
+    .header-img {
+        left: 680px;
+        top: 0;
+        content: url("img/desktop-people.png");
+        width: 640px;
+        height: 640px;
+    }
+}
+

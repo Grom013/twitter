@@ -1,0 +1,29 @@
+@media screen and (min-width: 1280px) {
+    .statistic {
+        display: flex;
+        justify-content: space-around;
+        width: 960px;
+        height: 254px;
+        background-color: #0057FF;
+        margin: 0 auto;
+        border-radius: 0 0 10px 10px;
+    }
+    .stat {
+        width: 200px;
+        height: 146px;
+        color: #FFFFFF;
+        margin-top: 52px;
+    }
+    .stat-number {
+        font-family: Roboto, sans-serif;
+        font-weight: 300;
+        text-align: center;
+        font-size: 76px;
+    }
+    .stat_desc{
+        font-family: Roboto, sans-serif;
+        text-align: center;
+        font-size: 18px;
+    }
+}
+

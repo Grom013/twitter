@@ -23,7 +23,6 @@ export async function fetchPictures() {
       throw new Error('error network');
     }
     const pictures = await response.json();
-    console.log(pictures);
     return pictures;
   } catch (error) {
     console.error('Error', error);

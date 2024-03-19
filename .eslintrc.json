@@ -16,7 +16,15 @@
     "prefer-arrow-callback": 0,
     "no-undef": "off",
     "no-promise-executor-return": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/button-has-type": "off",
+    "react/react-in-jsx-scope": "off",
     "mocha/prefer-arrow-callback": 2,
+    "react/jsx-indent": ["error", 4],
+    "max-len": "off",
+    "sx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "array-callback-return": "off",
     "linebreak-style": 0,
     "mocha/no-identical-title": "off",
     "no-shadow": "off",
@@ -24,6 +32,7 @@
   },
   "extends": ["airbnb", "plugin:mocha/recommended"],
   "plugins": [
-    "mocha"
+    "mocha",
+    "react"
   ]
 }
