@@ -14,9 +14,9 @@ function LastMessages() {
       try {
         const data = await fetchData();
         const pictur = await fetchPictures();
-        setMessages(data.lastMessages.map(message => ({
+        setMessages(data.lastMessages.map((message) => ({
           ...message,
-          originalTimeMessage: message.timeMessage // сохраняем начальное время сообщения
+          originalTimeMessage: message.timeMessage, // сохраняем начальное время сообщения
         })));
         setPictures(pictur.pictures);
       } catch (error) {
@@ -27,18 +27,14 @@ function LastMessages() {
     getData();
 
     intervalId = setInterval(() => {
-      setMessages(prevMessages =>
-          prevMessages.map(message => ({
-            ...message,
-            timeMessage: Date.now() - message.originalTimeMessage // обновляем относительное время
-          }))
-      );
+      setMessages((prevMessages) => prevMessages.map((message) => ({
+        ...message,
+        timeMessage: Date.now() - message.originalTimeMessage, // обновляем относительное время
+      })));
     }, 60000);
 
     return () => clearInterval(intervalId);
   }, []);
-
-
 
   function getAvatarUrl(messageId) {
     const picture = pictures.find((pic) => pic.id === messageId);
@@ -100,46 +96,46 @@ function LastMessages() {
               </div>
           ) : (
               <div className="skeleton-main">
-                <div className="last-messages-title">Последние сообщения</div>
-                <div className="skeleton-block">
-                  <div className="skeleton-block1">
-                    <div className="skeleton-img"></div>
-                    <div>
-                      <div className="skeleton-block1-desk1"></div>
-                      <div className="skeleton-block1-desk2"></div>
-                    </div>
+                  <div className="last-messages-title">Последние сообщения</div>
+                  <div className="skeleton-block">
+                      <div className="skeleton-block1">
+                          <div className="skeleton-img" />
+                          <div>
+                              <div className="skeleton-block1-desk1" />
+                              <div className="skeleton-block1-desk2" />
+                          </div>
+                      </div>
+                      <div className="skeleton-block2">
+                          <div className="skeleton-block2-desc1" />
+                          <div className="skeleton-block2-desc2" />
+                      </div>
                   </div>
-                  <div className="skeleton-block2">
-                    <div className="skeleton-block2-desc1"></div>
-                    <div className="skeleton-block2-desc2"></div>
+                  <div className="skeleton-block">
+                      <div className="skeleton-block1">
+                          <div className="skeleton-img" />
+                          <div>
+                              <div className="skeleton-block1-desk1" />
+                              <div className="skeleton-block1-desk2" />
+                          </div>
+                      </div>
+                      <div className="skeleton-block2">
+                          <div className="skeleton-block2-desc1" />
+                          <div className="skeleton-block2-desc2" />
+                      </div>
                   </div>
-                </div>
-                <div className="skeleton-block">
-                  <div className="skeleton-block1">
-                    <div className="skeleton-img"></div>
-                    <div>
-                      <div className="skeleton-block1-desk1"></div>
-                      <div className="skeleton-block1-desk2"></div>
-                    </div>
+                  <div className="skeleton-block">
+                      <div className="skeleton-block1">
+                          <div className="skeleton-img" />
+                          <div>
+                              <div className="skeleton-block1-desk1" />
+                              <div className="skeleton-block1-desk2" />
+                          </div>
+                      </div>
+                      <div className="skeleton-block2">
+                          <div className="skeleton-block2-desc1" />
+                          <div className="skeleton-block2-desc2" />
+                      </div>
                   </div>
-                  <div className="skeleton-block2">
-                    <div className="skeleton-block2-desc1"></div>
-                    <div className="skeleton-block2-desc2"></div>
-                  </div>
-                </div>
-                <div className="skeleton-block">
-                  <div className="skeleton-block1">
-                    <div className="skeleton-img"></div>
-                    <div>
-                      <div className="skeleton-block1-desk1"></div>
-                      <div className="skeleton-block1-desk2"></div>
-                    </div>
-                  </div>
-                  <div className="skeleton-block2">
-                    <div className="skeleton-block2-desc1"></div>
-                    <div className="skeleton-block2-desc2"></div>
-                  </div>
-                </div>
 
               </div>
           )}

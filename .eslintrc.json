@@ -25,6 +25,7 @@
     "sx-a11y/anchor-is-valid": "off",
     "jsx-a11y/control-has-associated-label": "off",
     "array-callback-return": "off",
+    "prefer-const": "off",
     "linebreak-style": 0,
     "mocha/no-identical-title": "off",
     "no-shadow": "off",
