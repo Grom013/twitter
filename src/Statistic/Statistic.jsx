@@ -14,7 +14,7 @@ function Statistic() {
         setUsers(data.static.users);
         setTodayMessages(data.static.todayMessages);
       } catch (error) {
-        console.error('Error occurred while fetching data:', error);
+        console.error('Error', error);
       }
     }
     getData();
