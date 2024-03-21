@@ -13,6 +13,7 @@ function App() {
               <LastMessages />
               <TagsBlogs />
           </div>
+          ы
       </>
   );
 }
