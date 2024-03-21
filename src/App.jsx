@@ -13,7 +13,6 @@ function App() {
               <LastMessages />
               <TagsBlogs />
           </div>
-          ф
       </>
   );
 }
