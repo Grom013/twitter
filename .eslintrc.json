@@ -3,8 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "overrides": [
-  ],
+  "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
@@ -19,7 +18,7 @@
     "import/no-extraneous-dependencies": "off",
     "react/button-has-type": "off",
     "react/react-in-jsx-scope": "off",
-    "mocha/prefer-arrow-callback": 2,
+    "mocha/prefer-arrow-callback": "off", // Убираем правило, которое вызывает ошибку
     "react/jsx-indent": ["error", 4],
     "max-len": "off",
     "sx-a11y/anchor-is-valid": "off",
@@ -31,9 +30,6 @@
     "no-shadow": "off",
     "consistent-return": "off"
   },
-  "extends": ["airbnb", "plugin:mocha/recommended"],
-  "plugins": [
-    "mocha",
-    "react"
-  ]
+  "extends": ["airbnb"],
+  "plugins": ["react"]
 }
