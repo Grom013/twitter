@@ -402,3 +402,207 @@
         background: #ABACB1;
     }
 }
+
+@media screen and (min-width: 360px) and (max-width: 430px) {
+    .last-messages-title{
+        font-family: Lato,sans-serif;
+        margin-top: 21px;
+        margin-left: 16px;
+        font-size: 24px;
+        font-weight: 900;
+        line-height: 29px;
+        text-align: left;
+    }
+    .last-messages-post {
+        padding: 0 15px 0 15px;
+        display: flex;
+        margin-top: 20px;
+    }
+    .post-avatar img{
+        border-radius: 50% ;
+        cursor: pointer;
+    }
+    .post-main-name {
+        font-family: Lato,sans-serif;
+        font-size: 14px;
+        font-weight: 900;
+        line-height: 18px;
+        text-align: left;
+        color: #1D1E22;
+    }
+    .post-nickname {
+        font-family: Lato, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        text-align: left;
+        color: #ABACB1;
+    }
+    .last-messages-wrapper {
+        width: 360px;
+
+    }
+        .post-time {
+        font-family: Lato, sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 10px;
+        text-align: right;
+        color: #ABACB1;
+    }
+    .message-desc {
+        font-family: Lato, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        text-align: left;
+    }
+    .message-info {
+        margin-left: 10px;
+    }
+    .message-info-first {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    .post-icons {
+        margin-top: 11px;
+        margin-bottom: 11px;
+        display: flex;
+        justify-content: space-between;
+        width: 205px;
+    }
+    .post-repost, .post-like, .post-share {
+        font-family: Lato, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: left;
+        color: #B1B1B1;
+        cursor: pointer;
+    }
+    .post-repost img, .post-like img, .post-share img {
+        margin-right: 10px;
+    }
+    .border-post{
+        width: 360px;
+        height: 1px;
+        background: #E9E9E9;
+        opacity: 0.5;
+    }
+    .posts-img {
+        margin-top: 10px;
+    }
+    .regModal {
+        display: block;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+    .mobile-handler {
+        width: 50px;
+        height: 4px;
+        margin: 10px auto;
+        border-radius: 12px;
+        background-color: #ABACB1;
+    }
+    .close {
+        display: none;
+    }
+    .message-desc {
+        font-family: Lato, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        text-align: left;
+        width: 311px;
+    }
+    .reg-modal-first-line div{
+        font-family: Roboto, sans-serif;
+        font-size: 24px;
+        margin-top: 30px;
+        margin-bottom: 22px;
+        font-weight: 900;
+        line-height: 28px;
+        text-align: left;
+    }
+    .modal-content {
+        position: fixed;
+        padding: 0 18px;
+        border-radius: 10px 10px 0 0;
+        bottom: 0;
+        width: 100%;
+        height: 476px;
+        background-color: white;
+    }
+
+    .first-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .close {
+        cursor: pointer;
+    }
+
+    .block-input {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .input-field {
+        width: 100%;
+        height: 52px;
+        padding: 30px 10px 10px 10px;
+        border: 1px solid #DFDFDF;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+
+    .input-label {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        color: #777;
+        font-size: 18px;
+        pointer-events: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    .input-field:focus + .input-label,
+    .input-field:not(:placeholder-shown) + .input-label {
+        top: 10px;
+        font-family: Roboto, sans-serif;
+        font-size: 9px;
+        font-weight: 400;
+        line-height: 11px;
+        text-align: left;
+        color: #B1B1B1;
+    }
+
+    .submit-btn {
+        display: block;
+        width: 100%;
+        height: 52px;
+        padding: 10px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: #0057FF;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .submit-btn:hover {
+        background-color: #0056b3;
+    }
+}

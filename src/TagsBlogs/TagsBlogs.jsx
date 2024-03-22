@@ -19,7 +19,7 @@ function TagsBlogs() {
   }, []);
   console.log(tags);
   return (
-      <div>
+      <div className="allBlogs">
           <div className="hashtags-bloggers">
               <div className="actual">
                   <div className="hashtags-bloggers-title">Актуальные темы</div>
