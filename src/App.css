@@ -1,0 +1,12 @@
+.last-messages-wrapper {
+    width: 960px;
+}
+.last-messages-title {
+    font-family: Roboto, sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 43px;
+    text-align: left;
+    margin: 40px auto 30px;
+}
+
