@@ -20,33 +20,33 @@ function Statistic() {
     getData();
   }, []);
   return (
-      <div className="statistic">
-          <div className="stat">
-              <div className="stat-number" id="users">{users}</div>
-              <div className="stat_desc">
-                  Пользователей
-                  <br />
-                  {' '}
-                  зарегистрировано
+        <div className="statistic">
+              <div className="stat">
+                    <div className="stat-number" id="users">{users}</div>
+                    <div className="stat_desc">
+                          Пользователей
+                          <br />
+                          {' '}
+                          зарегистрировано
+                    </div>
               </div>
-          </div>
-          <div className="stat">
-              <div className="stat-number" id="allMessages">{allMessages}</div>
-              <div className="stat_desc">
-                  Сообщений
-                  <br />
-                  написано
+              <div className="stat">
+                    <div className="stat-number" id="allMessages">{allMessages}</div>
+                    <div className="stat_desc">
+                          Сообщений
+                          <br />
+                          написано
+                    </div>
               </div>
-          </div>
-          <div className="stat">
-              <div className="stat-number" id="todayMessages">{todayMessages}</div>
-              <div className="stat_desc">
-                  Написано
-                  <br />
-                  сегодня
+              <div className="stat">
+                    <div className="stat-number" id="todayMessages">{todayMessages}</div>
+                    <div className="stat_desc">
+                          Написано
+                          <br />
+                          сегодня
+                    </div>
               </div>
-          </div>
-      </div>
+        </div>
   );
 }
 

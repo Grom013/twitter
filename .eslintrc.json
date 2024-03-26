@@ -20,11 +20,18 @@
     "linebreak-style": 0,
     "import/no-extraneous-dependencies": "off",
     "mocha/no-identical-title": "off",
+    "react/jsx-indent": ["error", 6],
+    "react/react-in-jsx-scope": "off",
     "no-shadow": "off",
+    "react/button-has-type": "off",
+    "max-len": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "prefer-const": "off",
     "consistent-return": "off"
   },
   "extends": ["airbnb", "plugin:mocha/recommended"],
   "plugins": [
-    "mocha"
+    "mocha",
+    "react"
   ]
 }

@@ -6,14 +6,14 @@ import TagsBlogs from './TagsBlogs/TagsBlogs.jsx';
 
 function App() {
   return (
-      <>
-          <Header />
-          <Statistic />
-          <div className="last-messages-wrapper">
-              <LastMessages />
-              <TagsBlogs />
-          </div>
-      </>
+        <>
+              <Header />
+              <Statistic />
+              <div className="last-messages-wrapper">
+                    <LastMessages />
+                    <TagsBlogs />
+              </div>
+        </>
   );
 }
 
