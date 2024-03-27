@@ -1,0 +1,55 @@
+@media screen and (min-width: 1280px) {
+    .statistic {
+        display: flex;
+        justify-content: space-around;
+        width: 960px;
+        height: 254px;
+        background-color: #0057FF;
+        margin: 0 auto;
+        border-radius: 0 0 10px 10px;
+    }
+    .stat {
+        width: 200px;
+        height: 146px;
+        color: #FFFFFF;
+        margin-top: 52px;
+    }
+    .stat-number {
+        font-family: Roboto, sans-serif;
+        font-weight: 300;
+        text-align: center;
+        font-size: 76px;
+    }
+    .stat_desc{
+        font-family: Roboto, sans-serif;
+        text-align: center;
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 430px) {
+    .statistic {
+        padding-top: 22px;
+        min-width: 360px;
+        min-height: 457px;
+        background-color: #0057FF;
+    }
+    .stat{
+        color:#ffffff;
+        margin-bottom: 45px;
+    }
+    .stat-number{
+        font-family: Lato, sans-serif;
+        font-size: 48px;
+        font-weight: 300;
+        line-height: 58px;
+        text-align: center;
+    }
+    .stat_desc{
+        font-family: Lato,sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22px;
+        text-align: center;
+    }
+}
