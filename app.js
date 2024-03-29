@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 // Получаем абсолютный путь к файлу main.html
-const htmlPath = path.join(__dirname, 'public', 'main.html');
+const htmlPath = new URL('public/main.html', import.meta.url).pathname;
 const html = fs.readFileSync(htmlPath, 'utf8');
 
 app.use(express.static('public'));
