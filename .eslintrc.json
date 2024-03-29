@@ -3,8 +3,6 @@
     "browser": true,
     "es2021": true
   },
-  "overrides": [
-  ],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
@@ -27,7 +25,8 @@
     "max-len": "off",
     "jsx-a11y/control-has-associated-label": "off",
     "prefer-const": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "import/no-unresolved": "off"
   },
   "extends": ["airbnb", "plugin:mocha/recommended"],
   "plugins": [
