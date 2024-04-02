@@ -1,17 +1,18 @@
 import express from 'express';
-import fs from 'fs';
-import path from 'path';
+import cors from 'cors';
+// import fs from 'fs';
 
 const app = express();
 const port = 3000;
 
-// Получаем абсолютный путь к файлу main.html
-const htmlPath = path.join(__dirname, 'public', 'main.html');
-const html = fs.readFileSync(htmlPath, 'utf8');
+// const html = fs.readFileSync('public/main.html', 'utf8');
 
 app.use(express.static('public'));
+app.use(cors());
 
-app.get('/', (req, res) => res.type('html').send(html));
+app.get('/posts', (req, res) => {
+  res.type('json').send({ posts: [{ id: 1, message: 'hello' }, { id: 2, message: 'hello2' }] });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
