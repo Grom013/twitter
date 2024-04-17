@@ -1,5 +1,6 @@
-const assert = require('chai').assert;
 import platformFilter from '../public/assets/platformFilter.js';
+
+const { assert } = require('chai');
 
 describe('Функция фильтрации платформы', function () {
   it('должна заменять слово "охуели" на "****"', function () {

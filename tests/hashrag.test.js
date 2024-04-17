@@ -1,5 +1,6 @@
-const assert = require('chai').assert;
 import hashTag from '../public/assets/hashtag.js';
+
+const { assert } = require('chai');
 
 describe('Функция перевода хештега в ссылку', function () {
   it('хештег в конце слова', function () {

@@ -1,5 +1,6 @@
-const assert = require('chai').assert;
 import similar from '../public/assets/recommended.js';
+
+const { assert } = require('chai');
 
 describe('Функция для рекомендации профилей', function () {
   it('когда count равен 2', function () {
