@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+const assert = require('chai').assert;
 import postSize from '../public/assets/post-size.js';
 
 describe('Функция проверки расчета размера поста', function () {

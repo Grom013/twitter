@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+const assert = require('chai').assert;
 import timeFn from '../public/assets/time.js';
 
 describe('Функция преобразования числа во время', function () {

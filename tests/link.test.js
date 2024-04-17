@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+const assert = require('chai').assert;
 import links from '../public/assets/links.js';
 
 describe('Функция обезки доменов', function () {

@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+const assert = require('chai').assert;
 import similar from '../public/assets/recommended.js';
 
 describe('Функция для рекомендации профилей', function () {

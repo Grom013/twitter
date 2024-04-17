@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+const assert = require('chai').assert;
 import platformFilter from '../public/assets/platformFilter.js';
 
 describe('Функция фильтрации платформы', function () {

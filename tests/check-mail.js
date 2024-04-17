@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+const assert = require('chai').assert;
 import mail from '../public/assets/mail.js';
 
 describe('Функция проверки email', function () {
