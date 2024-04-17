@@ -5,8 +5,9 @@ import { fetchData } from '../../public/assets/fetchData.js';
 function TagsBlogs() {
   const [blogs, setBlogs] = useState([]);
   const [tags, setTags] = useState([]);
+  
   useEffect(() => {
-    async function tagsBlogs() {
+    async function fetchDataAndSetState() {
       try {
         const data = await fetchData();
         setBlogs(data.blogs);
@@ -15,44 +16,32 @@ function TagsBlogs() {
         console.error(error);
       }
     }
-    tagsBlogs();
+    fetchDataAndSetState();
   }, []);
-  console.log(tags);
+console.log(tags.topics);
   return (
-        <div className="allBlogs">
-              <div className="hashtags-bloggers">
-                    <div className="actual">
-                          <div className="hashtags-bloggers-title">Актуальные темы</div>
-                          <div className="actual-post" />
-                          {tags.map((tag) => (
-                                <div className="actual-block" key={tag.id}>
-                                      <div className="top-name">
-                                            #
-                                            {tag.name}
-                                      </div>
-                                      <div className="top-message">
-                                            {tag.messages}
-                                            сообщений
-                                      </div>
-                                </div>
-                          ))}
-                    </div>
-                    <div className="bloggers">
-                          <div className="hashtags-bloggers-title">Интереные блогеры</div>
-                          {blogs.map((blog) => (
-                                <div className="bloggers-block">
-                                      <div><img src={blog.img} alt="" /></div>
-                                      <div className="bloggers-name">
-                                            <div>{blog.name}</div>
-                                            <div className="bloggers-nickname">{blog.nickname}</div>
-                                      </div>
-                                      <button className="bloggers-btn">Читать</button>
-                                </div>
-                          ))}
-
-                    </div>
-              </div>
+    <div className="allBlogs">
+      <div className="hashtags-bloggers">
+        <div className="actual">
+          <div className="hashtags-bloggers-title">Актуальные темы</div>
+          <div className="actual-post" />
+          
         </div>
+        <div className="bloggers">
+          <div className="hashtags-bloggers-title">Интересные блогеры</div>
+          {blogs && blogs.map((blog, index) => ( // Обратите внимание на изменения здесь
+            <div className="bloggers-block" key={index}> {/* Изменено на использование индекса */}
+              <div><img src={blog.img} alt="" /></div>
+              <div className="bloggers-name">
+                <div>{blog.name}</div>
+                <div className="bloggers-nickname">{blog.nickname}</div>
+              </div>
+              <button className="bloggers-btn">Читать</button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

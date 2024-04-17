@@ -1,19 +1,58 @@
-import express from 'express';
-import cors from 'cors';
-// import fs from 'fs';
+const express = require('express');
+const { Pool } = require('pg');
 
 const app = express();
 const port = 3000;
 
-// const html = fs.readFileSync('public/main.html', 'utf8');
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Разрешить доступ с любых источников
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
-app.use(express.static('public'));
-app.use(cors());
+const pool = new Pool({
+  user: 'twitter_production_tj6f_user',
+  host: 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
+  database: 'twitter_production_tj6f',
+  password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
+  port: 5432,
+  ssl: true,
+});
 
-app.get('/posts', (req, res) => {
-  res.type('json').send({ posts: [{ id: 1, message: 'hello' }, { id: 2, message: 'hello2' }] });
+app.get('/topics.json', (req, res) => {
+  pool.query('SELECT * FROM topics', (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при получении данных' });
+    } else {
+      const topicsData = result.rows;
+      res.json(topicsData); // Отправляем просто массив данных без оборачивания в объект
+    }
+  });
+});
+
+app.get('/lastMessages.json', (req, res) => {
+  pool.query('SELECT * FROM lastMessages', (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+    } else {
+      lastMessagesData = result.rows;
+      res.json(lastMessagesData);
+    }
+  });
+});
+
+app.get('/blogs.json', (req, res) => {
+  pool.query('SELECT * FROM blogs', (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+    } else {
+      blogsData = result.rows;
+      res.json(blogsData);
+    }
+  });
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Сервер запущен на порту ${port}`);
 });

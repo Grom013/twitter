@@ -1,15 +1,25 @@
 export async function fetchData() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const responseTopics = fetch('http://localhost:3000/topics.json');
+    const responseLastMessages = fetch('http://localhost:3000/lastMessages.json');
+    const responseBlogs = fetch('http://localhost:3000/blogs.json');
 
-    const response = await fetch('/public/data.json');
-    if (!response.ok) {
-      throw new Error('error network');
+    const [topicsResponse, lastMessagesResponse, blogsResponse] = await Promise.all([
+      responseTopics,
+      responseLastMessages,
+      responseBlogs,
+    ]);
+
+    if (!topicsResponse.ok || !lastMessagesResponse.ok || !blogsResponse.ok) {
+      throw new Error('Network error');
     }
-    const data = await response.json();
-    return data;
+    const topicsData = await topicsResponse.json();
+    const lastMessagesData = await lastMessagesResponse.json();
+    const blogsData = await blogsResponse.json();
+
+    return { topics: topicsData, lastMessages: lastMessagesData, blogs: blogsData };
   } catch (error) {
-    console.error('Error', error);
+    console.error('Error:', error);
     return null;
   }
 }
