@@ -1,142 +1,156 @@
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport"-->
+<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <link rel="stylesheet" href="css/index.css">-->
+<!--    <link rel="stylesheet" href="css/mobile.css">-->
+<!--    <link rel="stylesheet" href="css/desktop.css">-->
+<!--    <title>Twitter</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="regModal" id="regModal">-->
+<!--    <div class="modal-content">-->
+<!--        <div class="mobile-handler"></div>-->
+<!--        <div class="reg-modal-first-line">-->
+<!--            <div>Регистрация</div>-->
+<!--            <div class="close">x</div>-->
+<!--        </div>-->
+<!--        <div class="block-input">-->
+<!--            <input type="text" id="name" class="input-field" placeholder="">-->
+<!--            <label for="name" class="input-label">Выберите никнейм</label>-->
+<!--            <span class="name-input-danger">заполните поле</span>-->
+<!--        </div>-->
+<!--        <div class="block-input">-->
+<!--            <input type="text" id="email" class="input-field" placeholder="">-->
+<!--            <label for="email" class="input-label">Электронная почта</label>-->
+<!--            <span class="email-input-danger">заполните поле</span>-->
+<!--            <span class="email-address-input-danger">адрес не валиден</span>-->
+<!--        </div>-->
+<!--        <div class="block-input">-->
+<!--            <input type="password" id="password" class="input-field" placeholder="">-->
+<!--            <label for="password" class="input-label">Пароль</label>-->
+<!--            <span class="password-input-danger">заполните поле</span>-->
+<!--        </div>-->
+<!--        <div class="block-input">-->
+<!--            <input type="password" id="confirm-password" class="input-field" placeholder="">-->
+<!--            <label for="confirm-password" class="input-label">Подтверждение пароля</label>-->
+<!--            <span class="confirm-password-input-danger">пароли не совпадают</span>-->
+<!--        </div>-->
+<!--        <button class="submit-btn">Зарегистрироваться</button>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="overlay" id="overlay"></div>-->
+<!--<div class="container">-->
+<!--    &lt;!&ndash;    <div class="header_wrapper">&ndash;&gt;-->
+<!--    <div class="header">-->
+<!--        <img src="img/Vector.svg"/>-->
+<!--        <div class="header_logo">-->
+<!--        </div>-->
+<!--        <div class="header_text">-->
+<!--            Оставайся на связи-->
+<!--            с друзьями, даже когда их нет рядом-->
+<!--        </div>-->
+<!--        <button class="btn-reg">Зарегистрироваться</button>-->
+<!--        <button class="btn-login">Войти</button>-->
+<!--    </div>-->
+<!--    <div class="header-img"></div>-->
+<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="statistic">-->
+<!--    <div class="stat">-->
+<!--        <div class="stat-number" id="users">20</div>-->
+<!--        <div class="stat_desc">Пользователей<br/> зарегистрировано</div>-->
+<!--    </div>-->
+<!--    <div class="stat">-->
+<!--        <div class="stat-number" id="allMessages">556</div>-->
+<!--        <div class="stat_desc">Сообщений<br/>-->
+<!--            написано</div>-->
+<!--    </div>-->
+<!--    <div class="stat">-->
+<!--        <div class="stat-number" id="todayMessages">58</div>-->
+<!--        <div class="stat_desc">Написано<br/>-->
+<!--            сегодня</div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="last-messages-title">Последние сообщения</div>-->
+<!--<div class="last-messages-wrapper">-->
+<!--    <div class="last-messages">-->
+<!--            <ul class="o-vertical-spacing o-vertical-spacing&#45;&#45;l">-->
+<!--                <li class="blog-post o-media" >-->
+<!--                    <div class="o-media__figure" style="display: flex">-->
+<!--                        <span class="skeleton-box" style="width:80px;height:80px;border-radius: 50%;margin-right: 20px;"></span>-->
+<!--                        <div style="margin-top: 12px;">-->
+<!--                            <span class="skeleton-box" style="width:19em;margin-bottom: 9px;"></span>-->
+<!--                            <span class="skeleton-box" style="width:80%;"></span>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                    <div class="o-media__body" style="margin-bottom: 42px;">-->
+<!--                        <span class="skeleton-box" style="width:35em;margin-top: 9px;"></span>-->
+<!--                        <span class="skeleton-box" style="width:31em;margin-top: 9px;"></span>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li class="blog-post o-media" >-->
+<!--                    <div class="o-media__figure" style="display: flex">-->
+<!--                        <span class="skeleton-box" style="width:80px;height:80px;border-radius: 50%;margin-right: 20px;"></span>-->
+<!--                        <div style="margin-top: 12px;">-->
+<!--                            <span class="skeleton-box" style="width:19em;margin-bottom: 9px;"></span>-->
+<!--                            <span class="skeleton-box" style="width:80%;"></span>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                    <div class="o-media__body" style="margin-bottom: 42px;">-->
+<!--                        <span class="skeleton-box" style="width:35em;margin-top: 9px;"></span>-->
+<!--                        <span class="skeleton-box" style="width:31em;margin-top: 9px;"></span>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li class="blog-post o-media" >-->
+<!--                    <div class="o-media__figure" style="display: flex">-->
+<!--                        <span class="skeleton-box" style="width:80px;height:80px;border-radius: 50%;margin-right: 20px;"></span>-->
+<!--                        <div style="margin-top: 12px;">-->
+<!--                            <span class="skeleton-box" style="width:19em;margin-bottom: 9px;"></span>-->
+<!--                            <span class="skeleton-box" style="width:80%;"></span>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                    <div class="o-media__body" style="margin-bottom: 42px;">-->
+<!--                        <span class="skeleton-box" style="width:35em;margin-top: 9px;"></span>-->
+<!--                        <span class="skeleton-box" style="width:31em;margin-top: 9px;"></span>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--    </div>-->
+<!--    <div class="hashtags-bloggers">-->
+<!--        <div class="actual">-->
+<!--            <div class="hashtags-bloggers-title" style="margin-bottom: 15px;">Актуальные темы</div>-->
+<!--            <div class="actual-post"></div>-->
+<!--        </div>-->
+<!--        <div class="bloggers">-->
+<!--            <div class="hashtags-bloggers-title">Интереные блогеры</div>-->
+<!--            <div class="bloggers-block"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--<script crossorigin src="assets/index.js" type="module"></script>-->
+<!--<script crossorigin src="assets/fetchData.js" type="module"></script>-->
+<!--</body>-->
+<!--</html>-->
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/mobile.css">
-    <link rel="stylesheet" href="css/desktop.css">
-    <title>Twitter</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <script type="module" crossorigin src="/assets/index-DkL9KTM_.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BLdp-Ps2.css">
 </head>
 <body>
-<div class="regModal" id="regModal">
-    <div class="modal-content">
-        <div class="mobile-handler"></div>
-        <div class="reg-modal-first-line">
-            <div>Регистрация</div>
-            <div class="close">x</div>
-        </div>
-        <div class="block-input">
-            <input type="text" id="name" class="input-field" placeholder="">
-            <label for="name" class="input-label">Выберите никнейм</label>
-            <span class="name-input-danger">заполните поле</span>
-        </div>
-        <div class="block-input">
-            <input type="text" id="email" class="input-field" placeholder="">
-            <label for="email" class="input-label">Электронная почта</label>
-            <span class="email-input-danger">заполните поле</span>
-            <span class="email-address-input-danger">адрес не валиден</span>
-        </div>
-        <div class="block-input">
-            <input type="password" id="password" class="input-field" placeholder="">
-            <label for="password" class="input-label">Пароль</label>
-            <span class="password-input-danger">заполните поле</span>
-        </div>
-        <div class="block-input">
-            <input type="password" id="confirm-password" class="input-field" placeholder="">
-            <label for="confirm-password" class="input-label">Подтверждение пароля</label>
-            <span class="confirm-password-input-danger">пароли не совпадают</span>
-        </div>
-        <button class="submit-btn">Зарегистрироваться</button>
-    </div>
-</div>
-<div class="overlay" id="overlay"></div>
-<div class="container">
-    <!--    <div class="header_wrapper">-->
-    <div class="header">
-        <img src="img/Vector.svg"/>
-        <div class="header_logo">
-        </div>
-        <div class="header_text">
-            Оставайся на связи
-            с друзьями, даже когда их нет рядом
-        </div>
-        <button class="btn-reg">Зарегистрироваться</button>
-        <button class="btn-login">Войти</button>
-    </div>
-    <div class="header-img"></div>
-    <!--    </div>-->
-</div>
-<div class="statistic">
-    <div class="stat">
-        <div class="stat-number" id="users">20</div>
-        <div class="stat_desc">Пользователей<br/> зарегистрировано</div>
-    </div>
-    <div class="stat">
-        <div class="stat-number" id="allMessages">556</div>
-        <div class="stat_desc">Сообщений<br/>
-            написано</div>
-    </div>
-    <div class="stat">
-        <div class="stat-number" id="todayMessages">58</div>
-        <div class="stat_desc">Написано<br/>
-            сегодня</div>
-    </div>
-</div>
-<div class="last-messages-title">Последние сообщения</div>
-<div class="last-messages-wrapper">
-    <div class="last-messages">
-            <ul class="o-vertical-spacing o-vertical-spacing--l">
-                <li class="blog-post o-media" >
-                    <div class="o-media__figure" style="display: flex">
-                        <span class="skeleton-box" style="width:80px;height:80px;border-radius: 50%;margin-right: 20px;"></span>
-                        <div style="margin-top: 12px;">
-                            <span class="skeleton-box" style="width:19em;margin-bottom: 9px;"></span>
-                            <span class="skeleton-box" style="width:80%;"></span>
-                        </div>
-
-                    </div>
-                    <div class="o-media__body" style="margin-bottom: 42px;">
-                        <span class="skeleton-box" style="width:35em;margin-top: 9px;"></span>
-                        <span class="skeleton-box" style="width:31em;margin-top: 9px;"></span>
-                    </div>
-                </li>
-                <li class="blog-post o-media" >
-                    <div class="o-media__figure" style="display: flex">
-                        <span class="skeleton-box" style="width:80px;height:80px;border-radius: 50%;margin-right: 20px;"></span>
-                        <div style="margin-top: 12px;">
-                            <span class="skeleton-box" style="width:19em;margin-bottom: 9px;"></span>
-                            <span class="skeleton-box" style="width:80%;"></span>
-                        </div>
-
-                    </div>
-                    <div class="o-media__body" style="margin-bottom: 42px;">
-                        <span class="skeleton-box" style="width:35em;margin-top: 9px;"></span>
-                        <span class="skeleton-box" style="width:31em;margin-top: 9px;"></span>
-                    </div>
-                </li>
-                <li class="blog-post o-media" >
-                    <div class="o-media__figure" style="display: flex">
-                        <span class="skeleton-box" style="width:80px;height:80px;border-radius: 50%;margin-right: 20px;"></span>
-                        <div style="margin-top: 12px;">
-                            <span class="skeleton-box" style="width:19em;margin-bottom: 9px;"></span>
-                            <span class="skeleton-box" style="width:80%;"></span>
-                        </div>
-
-                    </div>
-                    <div class="o-media__body" style="margin-bottom: 42px;">
-                        <span class="skeleton-box" style="width:35em;margin-top: 9px;"></span>
-                        <span class="skeleton-box" style="width:31em;margin-top: 9px;"></span>
-                    </div>
-                </li>
-            </ul>
-    </div>
-    <div class="hashtags-bloggers">
-        <div class="actual">
-            <div class="hashtags-bloggers-title" style="margin-bottom: 15px;">Актуальные темы</div>
-            <div class="actual-post"></div>
-        </div>
-        <div class="bloggers">
-            <div class="hashtags-bloggers-title">Интереные блогеры</div>
-            <div class="bloggers-block"></div>
-        </div>
-    </div>
-
-</div>
-
-<script crossorigin src="assets/index.js" type="module"></script>
-<script crossorigin src="assets/fetchData.js" type="module"></script>
+<div id="root"></div>
 </body>
 </html>

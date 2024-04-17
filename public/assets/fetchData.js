@@ -12,6 +12,7 @@ export async function fetchData() {
 
     if (!topicsResponse.ok || !lastMessagesResponse.ok || !blogsResponse.ok) {
       throw new Error('Network error');
+
     }
     const topicsData = await topicsResponse.json();
     const lastMessagesData = await lastMessagesResponse.json();
@@ -26,9 +27,7 @@ export async function fetchData() {
 
 export async function fetchPictures() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    const response = await fetch('/public/pictures.json');
+    const response = await fetch('/pictures.json');
     if (!response.ok) {
       throw new Error('error network');
     }

@@ -1,6 +1,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 
+
 const app = express();
 const port = 3000;
 
@@ -52,6 +53,7 @@ app.get('/blogs.json', (req, res) => {
     }
   });
 });
+
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
