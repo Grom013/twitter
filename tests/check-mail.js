@@ -1,6 +1,5 @@
+import { assert } from 'chai';
 import mail from '../public/assets/mail.js';
-
-const { assert } = require('chai');
 
 describe('Функция проверки email', function () {
   it('если mail валидный', function () {

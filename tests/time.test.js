@@ -1,6 +1,5 @@
+import { assert } from 'chai';
 import timeFn from '../public/assets/time.js';
-
-const { assert } = require('chai');
 
 describe('Функция преобразования числа во время', function () {
   it('выходим за рамки одного года', function () {
