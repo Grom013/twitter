@@ -10,9 +10,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/topics.json': 'http://localhost:3000',
-      '/blogs.json': 'http://localhost:3000',
-      '/lastMessages.json': 'http://localhost:3000',
+      '/topics.json': 'http://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
+      '/blogs.json': 'http://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
+      '/lastMessages.json': 'http://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
     },
   },
 });
