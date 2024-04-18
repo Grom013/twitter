@@ -13,6 +13,6 @@ export default defineConfig({
       '/topics.json': 'http://localhost:3000',
       '/blogs.json': 'http://localhost:3000',
       '/lastMessages.json': 'http://localhost:3000',
-    }
-  }
+    },
+  },
 });
