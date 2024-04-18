@@ -1,8 +1,8 @@
 export async function fetchData() {
   try {
-    const responseTopics = fetch('http://localhost:3000/topics.json');
-    const responseLastMessages = fetch('http://localhost:3000/lastMessages.json');
-    const responseBlogs = fetch('http://localhost:3000/blogs.json');
+    const responseTopics = fetch('/topics.json');
+    const responseLastMessages = fetch('/lastMessages.json');
+    const responseBlogs = fetch('/blogs.json');
 
     const [topicsResponse, lastMessagesResponse, blogsResponse] = await Promise.all([
       responseTopics,
