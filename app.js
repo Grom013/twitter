@@ -19,24 +19,27 @@ const pool = new Pool({
   ssl: true,
 });
 
-app.get('/topics.json', async (req, res) => {
-  try {
-    const { rows } = await pool.query('SELECT * FROM topics');
-    res.json(rows);
-  } catch (error) {
-    console.error('Ошибка выполнения запроса', error);
-    res.status(500).json({ error: 'Произошла ошибка при получении данных' });
-  }
+app.get('/topics.json', (req, res) => {
+  pool.query('SELECT * FROM topics', (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при получении данных' });
+    } else {
+      topicsData = result.rows;
+      res.json(topicsData);
+    }
+  });
 });
 
-app.get('/lastMessages.json', async (req, res) => {
-  try {
-    const { rows } = await pool.query('SELECT * FROM lastMessages');
-    res.json(rows);
-  } catch (error) {
-    console.error('Ошибка выполнения запроса', error);
-    res.status(500).json({ error: 'Произошла ошибка при получении данных' });
-  }
+app.get('/lastMessages.json', (req, res) => {
+  pool.query('SELECT * FROM lastMessages', (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запросаr', err);
+    } else {
+      lastMessagesData = result.rows;
+      res.json(lastMessagesData);
+    }
+  });
 });
 
 app.get('/blogs.json', async (req, res) => {

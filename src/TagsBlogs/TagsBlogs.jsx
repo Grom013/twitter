@@ -24,7 +24,7 @@ function TagsBlogs() {
                     <div className="actual">
                           <div className="hashtags-bloggers-title">Актуальные темы</div>
                           <div className="actual-post" />
-                          {tags && tags.map((tag) => (
+                          {tags.map((tag) => (
                                 <div className="actual-block" key={tag.id}>
                                       <div className="top-name">
                                             #
@@ -39,7 +39,7 @@ function TagsBlogs() {
                     </div>
                     <div className="bloggers">
                           <div className="hashtags-bloggers-title">Интереные блогеры</div>
-                          {blogs&&blogs.map((blog) => (
+                          {blogs.map((blog) => (
                                 <div className="bloggers-block">
                                       <div><img src={blog.img} alt="" /></div>
                                       <div className="bloggers-name">

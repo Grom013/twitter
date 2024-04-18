@@ -52,7 +52,7 @@ function LastMessages() {
                                       <div className="last-messages-post" key={message.id}>
                                             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                             <a href="#" className="post-avatar">
-                                                  <img src={getAvatarUrl(message.id)} alt="" />
+                                                  <img src={message.avatar} alt="" />
                                             </a>
                                             <div className="message-info">
                                                   <div className="message-info-first">
