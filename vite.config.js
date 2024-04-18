@@ -10,9 +10,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/topics.json': 'http://localhost:3000',
-      '/blogs.json': 'http://localhost:3000',
-      '/lastMessages.json': 'http://localhost:3000',
+      '/topics.json': 'https://twitter-a6rh.onrender.com',
+      '/blogs.json': 'https://twitter-a6rh.onrender.com',
+      '/lastMessages.json': 'https://twitter-a6rh.onrender.com',
     },
   },
 });
