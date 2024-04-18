@@ -1,7 +1,5 @@
 import express from 'express';
-import pkg from 'pg';
-
-const { Pool } = pkg;
+import { Pool } from 'pg';
 
 const app = express();
 const port = 3000;
@@ -20,9 +18,6 @@ const pool = new Pool({
   port: 5432,
   ssl: true,
 });
-let lastMessagesData = [];
-let blogsData = [];
-let topicsData = [];
 
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
@@ -47,15 +42,14 @@ app.get('/lastMessages.json', (req, res) => {
   });
 });
 
-app.get('/blogs.json', (req, res) => {
-  pool.query('SELECT * FROM blogs', (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-    } else {
-      blogsData = result.rows;
-      res.json(blogsData);
-    }
-  });
+app.get('/blogs.json', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM blogs');
+    res.json(rows);
+  } catch (error) {
+    console.error('Ошибка выполнения запроса', error);
+    res.status(500).json({ error: 'Произошла ошибка при получении данных' });
+  }
 });
 
 app.listen(port, () => {
