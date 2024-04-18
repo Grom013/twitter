@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/topics.json': 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
+      '/topics.json': 'dpg-co6qgumv3ddc73c79nr0-adfdf.oregon-posdftgres.render.com',
       '/blogs.json': 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
       '/lastMessages.json': 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
     },
