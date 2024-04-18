@@ -39,7 +39,7 @@ app.get('/topics.json', (req, res) => {
 app.get('/lastMessages.json', (req, res) => {
   pool.query('SELECT * FROM lastMessages', (err, result) => {
     if (err) {
-      console.error('Ошибка выполнения запроса', err);
+      console.error('Ошибка выполнения запросаr', err);
     } else {
       lastMessagesData = result.rows;
       res.json(lastMessagesData);
