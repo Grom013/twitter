@@ -19,7 +19,6 @@ export async function fetchData() {
   }
 }
 
-
 export async function fetchPictures() {
   try {
     const response = await fetch('/public/pictures.json');
