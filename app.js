@@ -2,12 +2,11 @@ import express from 'express';
 import pkg from 'pg';
 
 const { Pool } = pkg;
-
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; 
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); 
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
@@ -20,9 +19,6 @@ const pool = new Pool({
   port: 5432,
   ssl: true,
 });
-let lastMessagesData = [];
-let blogsData = [];
-let topicsData = [];
 
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
@@ -30,8 +26,7 @@ app.get('/topics.json', (req, res) => {
       console.error('Ошибка выполнения запроса', err);
       res.status(500).json({ error: 'Произошла ошибка при получении данных' });
     } else {
-      topicsData = result.rows;
-      res.json(topicsData); 
+      res.json(result.rows); // Отправляем данные напрямую из результата запроса
     }
   });
 });
@@ -40,22 +35,21 @@ app.get('/lastMessages.json', (req, res) => {
   pool.query('SELECT * FROM lastMessages', (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при получении данных' });
     } else {
-      lastMessagesData = result.rows;
-      res.json(lastMessagesData);
+      res.json(result.rows); // Отправляем данные напрямую из результата запроса
     }
   });
 });
 
-app.get('/blogs.json', (req, res) => {
-  pool.query('SELECT * FROM blogs', (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-    } else {
-      blogsData = result.rows;
-      res.json(blogsData);
-    }
-  });
+app.get('/blogs.json', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM blogs');
+    res.json(rows);
+  } catch (error) {
+    console.error('Ошибка выполнения запроса', error);
+    res.status(500).json({ error: 'Произошла ошибка при получении данных' });
+  }
 });
 
 app.listen(port, () => {

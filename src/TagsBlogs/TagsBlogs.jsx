@@ -17,7 +17,6 @@ function TagsBlogs() {
     }
     tagsBlogs();
   }, []);
-  console.log(tags);
   return (
         <div className="allBlogs">
               <div className="hashtags-bloggers">

@@ -40,8 +40,6 @@ function LastMessages() {
     const picture = pictures.find((pic) => pic.id === messageId);
     return picture ? picture.avatarUrl : '';
   }
-  console.log(messages);
-  console.log(pictures);
   return (
         <div>
               {messages.length > 0 ? (
