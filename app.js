@@ -26,7 +26,7 @@ app.get('/topics', (req, res) => {
       console.error('Ошибка выполнения запроса', err);
       res.status(500).json({ error: 'Произошла ошибка при получении данных' });
     } else {
-      res.json(result.rows); // Отправляем данные напрямую из результата запроса
+      res.sendFile('/path/to/topics.json'); // Отправляем файл напрямую
     }
   });
 });
@@ -37,7 +37,7 @@ app.get('/lastMessages', (req, res) => {
       console.error('Ошибка выполнения запроса', err);
       res.status(500).json({ error: 'Произошла ошибка при получении данных' });
     } else {
-      res.json(result.rows); // Отправляем данные напрямую из результата запроса
+      res.sendFile('/path/to/lastMessages.json'); // Отправляем файл напрямую
     }
   });
 });
@@ -45,7 +45,7 @@ app.get('/lastMessages', (req, res) => {
 app.get('/blogs', async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM blogs');
-    res.json(rows);
+    res.json(rows); // Отправляем данные как JSON
   } catch (error) {
     console.error('Ошибка выполнения запроса', error);
     res.status(500).json({ error: 'Произошла ошибка при получении данных' });
