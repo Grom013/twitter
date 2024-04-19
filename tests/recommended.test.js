@@ -25,6 +25,7 @@ describe('Функция для рекомендации профилей', func
     const result = similar(profile, profiles, count);
     assert.deepEqual(expectedResult, result);
   });
+
   it('когда count равен 1', function () {
     const expectedResult = [258];
     const profile = {
@@ -48,6 +49,7 @@ describe('Функция для рекомендации профилей', func
     const result = similar(profile, profiles, count);
     assert.deepEqual(expectedResult, result);
   });
+
   it('когда count равен 3', function () {
     const expectedResult = [258, 259];
     const profile = {
@@ -75,6 +77,7 @@ describe('Функция для рекомендации профилей', func
     const result = similar(profile, profiles, count);
     assert.deepEqual(expectedResult, result);
   });
+
   it('когда count равен 2 и профилей 4', function () {
     const expectedResult = [258, 259];
     const profile = {
@@ -106,6 +109,7 @@ describe('Функция для рекомендации профилей', func
     const result = similar(profile, profiles, count);
     assert.deepEqual(expectedResult, result);
   });
+
   it('когда count равен 4 и профилей 6 и выводит по наиболее подходящим', function () {
     const expectedResult = [258, 259, 257, 260];
     const profile = {
