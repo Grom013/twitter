@@ -5,6 +5,7 @@ const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -20,7 +21,7 @@ const pool = new Pool({
   ssl: true,
 });
 
-app.get('/topics.json', (req, res) => {
+app.get('/topics', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
@@ -31,7 +32,7 @@ app.get('/topics.json', (req, res) => {
   });
 });
 
-app.get('/lastMessages.json', (req, res) => {
+app.get('/lastMessages', (req, res) => {
   pool.query('SELECT * FROM lastMessages', (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);

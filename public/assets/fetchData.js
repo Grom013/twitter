@@ -1,21 +1,16 @@
 export async function fetchData() {
   try {
-    const responseTopics = fetch('/topics.json');
-    const responseLastMessages = fetch('/lastMessages.json');
-    const responseBlogs = fetch('/blogs.json');
+    const responseTopics = await fetch('https://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com/topics');
+    const responseLastMessages = await fetch('https://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com/lastMessages');
+    const responseBlogs = await fetch('https://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com/blogs');
 
-    const [topicsResponse, lastMessagesResponse, blogsResponse] = await Promise.all([
-      responseTopics,
-      responseLastMessages,
-      responseBlogs,
-    ]);
-
-    if (!topicsResponse.ok || !lastMessagesResponse.ok || !blogsResponse.ok) {
+    if (!responseTopics.ok || !responseLastMessages.ok || !responseBlogs.ok) {
       throw new Error('Network error');
     }
-    const topicsData = await topicsResponse.json();
-    const lastMessagesData = await lastMessagesResponse.json();
-    const blogsData = await blogsResponse.json();
+
+    const topicsData = await responseTopics.json();
+    const lastMessagesData = await responseLastMessages.json();
+    const blogsData = await responseBlogs.json();
 
     return { topics: topicsData, lastMessages: lastMessagesData, blogs: blogsData };
   } catch (error) {
@@ -26,8 +21,6 @@ export async function fetchData() {
 
 export async function fetchPictures() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
     const response = await fetch('/public/pictures.json');
     if (!response.ok) {
       throw new Error('error network');
