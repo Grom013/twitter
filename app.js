@@ -3,7 +3,7 @@ import pkg from 'pg';
 
 const { Pool } = pkg;
 const app = express();
-const port = process.env.port ?? 3000;
+const port = process.env.PORT || 3000; // process.env.PORT должен быть в верхнем регистре
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -20,17 +20,13 @@ const pool = new Pool({
   ssl: true,
 });
 
-let topicsData = [];
-let lastMessagesData = [];
-
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
       res.status(500).json({ error: 'Произошла ошибка при получении данных' });
     } else {
-      topicsData = result.rows;
-      res.json(topicsData);
+      res.json(result.rows); // Отправляем данные напрямую из результата запроса
     }
   });
 });
@@ -41,8 +37,7 @@ app.get('/lastMessages.json', (req, res) => {
       console.error('Ошибка выполнения запроса', err);
       res.status(500).json({ error: 'Произошла ошибка при получении данных' });
     } else {
-      lastMessagesData = result.rows;
-      res.json(lastMessagesData);
+      res.json(result.rows); // Отправляем данные напрямую из результата запроса
     }
   });
 });
