@@ -2,9 +2,9 @@ import express from 'express';
 import pkg from 'pg';
 
 const { Pool } = pkg;
-const app = express();
-const port = process.env.PORT || 3000;
 
+const app = express();
+const port = 3000;
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -21,36 +21,38 @@ const pool = new Pool({
   ssl: true,
 });
 
-app.get('/topics', (req, res) => {
+app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
       res.status(500).json({ error: 'Произошла ошибка при получении данных' });
     } else {
-      res.json(result.rows); // Отправляем данные напрямую из результата запроса
+      const topicsData = result.rows;
+      res.json(topicsData);
     }
   });
 });
 
-app.get('/lastMessages', (req, res) => {
+app.get('/lastMessages.json', (req, res) => {
   pool.query('SELECT * FROM lastMessages', (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
-      res.status(500).json({ error: 'Произошла ошибка при получении данных' });
     } else {
-      res.json(result.rows); // Отправляем данные напрямую из результата запроса
+      const lastMessagesData = result.rows; // Объявляем переменную с помощью const
+      res.json(lastMessagesData);
     }
   });
 });
 
-app.get('/blogs.json', async (req, res) => {
-  try {
-    const { rows } = await pool.query('SELECT * FROM blogs');
-    res.json(rows);
-  } catch (error) {
-    console.error('Ошибка выполнения запроса', error);
-    res.status(500).json({ error: 'Произошла ошибка при получении данных' });
-  }
+app.get('/blogs.json', (req, res) => {
+  pool.query('SELECT * FROM blogs', (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+    } else {
+      const blogsData = result.rows; // Объявляем переменную с помощью const
+      res.json(blogsData);
+    }
+  });
 });
 
 app.listen(port, () => {

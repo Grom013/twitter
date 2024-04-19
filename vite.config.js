@@ -10,9 +10,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/topics': 'http://localhost:3000',
-      '/blogs': 'http://localhost:3000',
-      '/lastMessages': 'http://localhost:3000',
+      '/topics.json': 'http://localhost:3000',
+      '/blogs.json': 'http://localhost:3000',
+      '/lastMessages.json': 'http://localhost:3000',
     },
   },
 });
