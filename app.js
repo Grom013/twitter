@@ -12,12 +12,12 @@ app.use((req, res, next) => {
 });
 
 const pool = new Pool({
-user: 'twitter_production_tj6f_user',
-host: 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
-database: 'twitter_production_tj6f',
-password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
-port: 5432,
-ssl: true,
+  user: 'twitter_production_tj6f_user',
+  host: 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
+  database: 'twitter_production_tj6f',
+  password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
+  port: 5432,
+  ssl: true,
 });
 
 let topicsData = [];
