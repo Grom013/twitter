@@ -19,8 +19,6 @@ export async function fetchData() {
   }
 }
 
-
-
 export async function fetchPictures() {
   try {
     await new Promise((resolve) => setTimeout(resolve, 2000));
