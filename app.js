@@ -45,7 +45,7 @@ app.get('/lastMessages', (req, res) => {
 app.get('/blogs', async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM blogs');
-    res.sendFile('/path/to/blogs.json'); // Отправляем файл напрямую
+    res.json(rows); // Отправляем данные как JSON
   } catch (error) {
     console.error('Ошибка выполнения запроса', error);
     res.status(500).json({ error: 'Произошла ошибка при получении данных' });
