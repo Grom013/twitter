@@ -20,7 +20,7 @@ const pool = new Pool({
   ssl: true,
 });
 
-app.get('/topics.json', (req, res) => {
+app.get('topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
@@ -31,7 +31,7 @@ app.get('/topics.json', (req, res) => {
   });
 });
 
-app.get('/lastMessages.json', (req, res) => {
+app.get('lastMessages.json', (req, res) => {
   pool.query('SELECT * FROM lastMessages', (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
@@ -42,7 +42,7 @@ app.get('/lastMessages.json', (req, res) => {
   });
 });
 
-app.get('/blogs.json', async (req, res) => {
+app.get('blogs.json', async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM blogs');
     res.json(rows);
