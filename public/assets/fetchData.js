@@ -1,8 +1,8 @@
 export async function fetchData() {
   try {
-    const responseTopics = await fetch('/topics');
-    const responseLastMessages = await fetch('/lastMessages');
-    const responseBlogs = await fetch('/blogs');
+    const responseTopics = await fetch('/topics.json');
+    const responseLastMessages = await fetch('/lastMessages.json');
+    const responseBlogs = await fetch('/blogs.json');
 
     if (!responseTopics.ok || !responseLastMessages.ok || !responseBlogs.ok) {
       throw new Error('Network error');
