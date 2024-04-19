@@ -78,7 +78,7 @@ const client = new Client({
 });
 
 // Маршрут для получения данных
-app.get('/topics', async (req, res) => {
+app.get('/topics.json', async (req, res) => {
   try {
     await client.connect();
     const result = await client.query('SELECT * FROM topics');
@@ -91,7 +91,7 @@ app.get('/topics', async (req, res) => {
   }
 });
 
-app.get('/lastMessages', async (req, res) => {
+app.get('/lastMessages.json', async (req, res) => {
   try {
     await client.connect();
     const result = await client.query('SELECT * FROM lastMessages');
@@ -104,7 +104,7 @@ app.get('/lastMessages', async (req, res) => {
   }
 });
 
-app.get('/blogs', async (req, res) => {
+app.get('/blogs.json', async (req, res) => {
   try {
     await client.connect();
     const result = await client.query('SELECT * FROM blogs');
