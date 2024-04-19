@@ -20,6 +20,9 @@ const pool = new Pool({
   ssl: true,
 });
 
+let topicsData = [];
+let lastMessagesData = [];
+
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
     if (err) {
@@ -35,7 +38,8 @@ app.get('/topics.json', (req, res) => {
 app.get('/lastMessages.json', (req, res) => {
   pool.query('SELECT * FROM lastMessages', (err, result) => {
     if (err) {
-      console.error('Ошибка выполнения запросаr', err);
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при получении данных' });
     } else {
       lastMessagesData = result.rows;
       res.json(lastMessagesData);
