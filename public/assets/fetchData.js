@@ -1,8 +1,8 @@
 export async function fetchData() {
   try {
-    const responseTopics = await fetch('http://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com/topics.json');
-    const responseLastMessages = await fetch('http://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com/lastMessages.json');
-    const responseBlogs = await fetch('http://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com/blogs.json');
+    const responseTopics = await fetch('/topics');
+    const responseLastMessages = await fetch('/lastMessages');
+    const responseBlogs = await fetch('/blogs');
 
     if (!responseTopics.ok || !responseLastMessages.ok || !responseBlogs.ok) {
       throw new Error('Network error');
