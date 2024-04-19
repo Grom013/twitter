@@ -12,12 +12,12 @@
 // });
 
 // const pool = new Pool({
-  // user: 'twitter_production_tj6f_user',
-  // host: 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
-  // database: 'twitter_production_tj6f',
-  // password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
-  // port: 5432,
-  // ssl: true,
+// user: 'twitter_production_tj6f_user',
+// host: 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
+// database: 'twitter_production_tj6f',
+// password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
+// port: 5432,
+// ssl: true,
 // });
 
 // let topicsData = [];
@@ -69,62 +69,61 @@ const app = express();
 
 // Параметры подключения к базе данных
 const client = new Client({
-    user: 'twitter_production_tj6f_user',
-    host: 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
-    database: 'twitter_production_tj6f',
-    password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
-    port: 5432,
-    ssl: true,
+  user: 'twitter_production_tj6f_user',
+  host: 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
+  database: 'twitter_production_tj6f',
+  password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
+  port: 5432,
+  ssl: true,
 });
 
 // Маршрут для получения данных
 app.get('/topics', async (req, res) => {
-    try {
-        await client.connect();
-        const result = await client.query('SELECT * FROM topics');
-        res.json(result.rows);
-    } catch (err) {
-        console.error('Ошибка при выполнении запроса:', err);
-        res.status(500).json({ error: 'Ошибка при выполнении запроса' });
-    } finally {
-        await client.end();
-    }
+  try {
+    await client.connect();
+    const result = await client.query('SELECT * FROM topics');
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Ошибка при выполнении запроса:', err);
+    res.status(500).json({ error: 'Ошибка при выполнении запроса' });
+  } finally {
+    await client.end();
+  }
 });
 
 app.get('/lastMessages', async (req, res) => {
   try {
-      await client.connect();
-      const result = await client.query('SELECT * FROM lastMessages');
-      res.json(result.rows);
+    await client.connect();
+    const result = await client.query('SELECT * FROM lastMessages');
+    res.json(result.rows);
   } catch (err) {
-      console.error('Ошибка при выполнении запроса:', err);
-      res.status(500).json({ error: 'Ошибка при выполнении запроса' });
+    console.error('Ошибка при выполнении запроса:', err);
+    res.status(500).json({ error: 'Ошибка при выполнении запроса' });
   } finally {
-      await client.end();
+    await client.end();
   }
 });
 
-
 app.get('/blogs', async (req, res) => {
   try {
-      await client.connect();
-      const result = await client.query('SELECT * FROM blogs');
-      res.json(result.rows);
+    await client.connect();
+    const result = await client.query('SELECT * FROM blogs');
+    res.json(result.rows);
   } catch (err) {
-      console.error('Ошибка при выполнении запроса:', err);
-      res.status(500).json({ error: 'Ошибка при выполнении запроса' });
+    console.error('Ошибка при выполнении запроса:', err);
+    res.status(500).json({ error: 'Ошибка при выполнении запроса' });
   } finally {
-      await client.end();
+    await client.end();
   }
 });
 
 // Маршрут для отдачи HTML-страницы
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+  res.sendFile(`${__dirname}/index.html`);
 });
 
 // Запуск сервера
 const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
-    console.log(`Сервер запущен на порту ${PORT}`);
+  console.log(`Сервер запущен на порту ${PORT}`);
 });
