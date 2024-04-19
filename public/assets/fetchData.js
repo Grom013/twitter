@@ -21,8 +21,6 @@ export async function fetchData() {
 
 export async function fetchPictures() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
     const response = await fetch('/public/pictures.json');
     if (!response.ok) {
       throw new Error('error network');

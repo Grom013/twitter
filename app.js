@@ -3,7 +3,7 @@ import pkg from 'pg';
 
 const { Pool } = pkg;
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 80; // Используем порт 80 для HTTP
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
