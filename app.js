@@ -2,9 +2,8 @@ import express from 'express';
 import pkg from 'pg';
 
 const { Pool } = pkg;
-
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -18,7 +17,7 @@ const pool = new Pool({
   database: 'twitter_production_tj6f',
   password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
   port: 5432,
-  ssl: true,
+  ssl: false,
 });
 
 app.get('/topics.json', (req, res) => {
