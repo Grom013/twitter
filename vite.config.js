@@ -10,9 +10,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/topics.json': 'https://twitter1-g0o3.onrender.com/topics.json',
-      '/blogs.json': 'https://twitter1-g0o3.onrender.com/blogs.json',
-      '/lastMessages.json': 'https://twitter1-g0o3.onrender.com/lastMessages.json',
-    },
+      '/topics.json': '/topics.json',
+      '/blogs.json': '/blogs.json',
+      '/lastMessages.json': '/lastMessages.json',
+    },    
   },
 });
