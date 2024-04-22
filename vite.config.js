@@ -13,6 +13,6 @@ export default defineConfig({
       '/topics.json': '/topics.json',
       '/blogs.json': '/blogs.json',
       '/lastMessages.json': '/lastMessages.json',
-    },    
+    },
   },
 });
