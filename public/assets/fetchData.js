@@ -1,6 +1,6 @@
 export async function fetchData() {
   try {
-    const responseTopics = fetch('/topics.json');
+    const responseTopics = fetch('https://twitter1-g0o3.onrender.com/topics.json');
     const responseLastMessages = fetch('/lastMessages.json');
     const responseBlogs = fetch('/blogs.json');
 
