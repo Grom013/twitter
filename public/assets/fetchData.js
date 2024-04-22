@@ -1,8 +1,8 @@
 export async function fetchData() {
   try {
     const responseTopics = fetch('https://twitter1-g0o3.onrender.com/topics.json');
-    const responseLastMessages = fetch('/lastMessages.json');
-    const responseBlogs = fetch('/blogs.json');
+    const responseLastMessages = fetch('https://twitter1-g0o3.onrender.com/lastMessages.json');
+    const responseBlogs = fetch('https://twitter1-g0o3.onrender.com/blogs.json');
 
     const [topicsResponse, lastMessagesResponse, blogsResponse] = await Promise.all([
       responseTopics,
