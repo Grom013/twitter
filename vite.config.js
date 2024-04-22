@@ -10,9 +10,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/topics.json': 'https://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com:3000',
-      '/blogs.json': 'https://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com:3000',
-      '/lastMessages.json': 'https://dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com:3000',
+      '/topics.json': 'https://twitter1-g0o3.onrender.com/',
+      '/blogs.json': 'https://twitter1-g0o3.onrender.com/',
+      '/lastMessages.json': 'https://twitter1-g0o3.onrender.com/',
     },
   },
 });

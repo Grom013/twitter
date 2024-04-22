@@ -17,7 +17,7 @@ const pool = new Pool({
   database: 'twitter_production_tj6f',
   password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
   port: 5432,
-  ssl: false,
+  ssl: true,
 });
 
 app.get('/topics.json', (req, res) => {
