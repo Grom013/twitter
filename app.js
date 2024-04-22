@@ -24,7 +24,7 @@ app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
-      res.status(500).json({ error: 'Произошла ошибка при получении данных' });
+      res.status(500).json({ error: 'Произошлa ошибка при получении данных' });
     } else {
       const topicsData = result.rows;
       res.json(topicsData);
