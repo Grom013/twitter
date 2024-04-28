@@ -68,7 +68,7 @@ app.delete('/lastMessages/:id.json', (req, res) => {
 });
 
 app.post('/lastMessages.json', (req, res) => {
-  const { message } = req.body; 
+  const { message } = req.body;
 
   pool.query('INSERT INTO lastMessages (message) VALUES ($1)', [message], (err, result) => {
     if (err) {
@@ -94,7 +94,7 @@ app.delete('/lastMessages/:id.json', (req, res) => {
 });
 
 app.post('/lastMessages.json', (req, res) => {
-  const { message } = req.body; 
+  const { message } = req.body;
 
   pool.query('INSERT INTO lastMessages (message) VALUES ($1)', [message], (err, result) => {
     if (err) {
