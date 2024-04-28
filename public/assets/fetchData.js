@@ -1,29 +1,36 @@
 export async function fetchData() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const responseTopics = fetch('https://twitter1-g0o3.onrender.com/topics.json');
+    const responseLastMessages = fetch('https://twitter1-g0o3.onrender.com/lastMessages.json');
+    const responseBlogs = fetch('https://twitter1-g0o3.onrender.com/blogs.json');
 
-    const response = await fetch('/public/data.json');
-    if (!response.ok) {
-      throw new Error('error network');
+    const [topicsResponse, lastMessagesResponse, blogsResponse] = await Promise.all([
+      responseTopics,
+      responseLastMessages,
+      responseBlogs,
+    ]);
+
+    if (!topicsResponse.ok || !lastMessagesResponse.ok || !blogsResponse.ok) {
+      throw new Error('Network error');
     }
-    const data = await response.json();
-    return data;
+    const topicsData = await topicsResponse.json();
+    const lastMessagesData = await lastMessagesResponse.json();
+    const blogsData = await blogsResponse.json();
+
+    return { topics: topicsData, lastMessages: lastMessagesData, blogs: blogsData };
   } catch (error) {
-    console.error('Error', error);
+    console.error('Error:', error);
     return null;
   }
 }
 
 export async function fetchPictures() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
     const response = await fetch('/public/pictures.json');
     if (!response.ok) {
       throw new Error('error network');
     }
     const pictures = await response.json();
-    console.log(pictures);
     return pictures;
   } catch (error) {
     console.error('Error', error);
