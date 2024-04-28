@@ -67,6 +67,59 @@ app.delete('/lastMessages/:id.json', (req, res) => {
   });
 });
 
+app.post('/lastMessages.json', (req, res) => {
+  const { message } = req.body; 
+
+  pool.query('INSERT INTO lastMessages (message) VALUES ($1)', [message], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при создании сообщения' });
+    } else {
+      res.status(201).json({ message: 'Сообщение успешно создано' });
+    }
+  });
+});
+
+app.delete('/lastMessages/:id.json', (req, res) => {
+  const messageId = req.params.id;
+
+  pool.query('DELETE FROM lastMessages WHERE id = $1', [messageId], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при удалении сообщения' });
+    } else {
+      res.json({ message: 'Сообщение успешно удалено' });
+    }
+  });
+});
+
+app.post('/lastMessages.json', (req, res) => {
+  const { message } = req.body; 
+
+  pool.query('INSERT INTO lastMessages (message) VALUES ($1)', [message], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при создании сообщения' });
+    } else {
+      res.status(201).json({ message: 'Сообщение успешно создано' });
+    }
+  });
+});
+
+app.post('/lastMessages/:id.json', (req, res) => {
+  const messageId = req.params.id;
+  const { message } = req.body; // Предполагается, что вы отправляете тело запроса с обновленными данными сообщения
+
+  pool.query('UPDATE lastMessages SET message = $1 WHERE id = $2', [message, messageId], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при редактировании сообщения' });
+    } else {
+      res.json({ message: 'Сообщение успешно отредактировано' });
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
