@@ -6,10 +6,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
+
 
 const pool = new Pool({
   user: 'twitter_production_tj6f_user',
@@ -19,6 +21,8 @@ const pool = new Pool({
   port: 5432,
   ssl: true,
 });
+app.use(express.json());
+
 
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
@@ -105,6 +109,32 @@ app.post('/lastMessages/:id.json', (req, res) => {
     }
   });
 });
+
+app.post('/createUser', (req, res) => {
+  const { email, password } = req.body;
+
+  pool.query('SELECT * FROM users WHERE email = $1', [email], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
+    } else {
+      if (result.rows.length > 0) {
+        res.status(400).json({ error: 'Пользователь с таким email уже существует' });
+      } else {
+        pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, password], (err, result) => {
+          if (err) {
+            console.error('Ошибка выполнения запроса', err);
+            res.status(500).json({ error: 'Произошла ошибка при создании пользователя' });
+          } else {
+            res.status(201).json({ message: 'Пользователь успешно создан' });
+          }
+        });
+      }
+    }
+  });
+});
+
+
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
