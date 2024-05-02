@@ -6,10 +6,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
+
 
 const pool = new Pool({
   user: 'twitter_production_tj6f_user',
@@ -19,6 +21,7 @@ const pool = new Pool({
   port: 5432,
   ssl: true,
 });
+app.use(express.json());
 
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
@@ -63,6 +66,70 @@ app.delete('/lastMessages/:id.json', (req, res) => {
       res.status(500).json({ error: 'Произошла ошибка при удалении сообщения' });
     } else {
       res.json({ message: 'Сообщение успешно удалено' });
+    }
+  });
+});
+
+app.post('/lastMessages.json', (req, res) => {
+  const { message } = req.body;
+
+  pool.query('INSERT INTO lastMessages (message) VALUES ($1)', [message], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при создании сообщения' });
+    } else {
+      res.status(201).json({ message: 'Сообщение успешно создано' });
+    }
+  });
+});
+
+app.delete('/lastMessages/:id.json', (req, res) => {
+  const messageId = req.params.id;
+
+  pool.query('DELETE FROM lastMessages WHERE id = $1', [messageId], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при удалении сообщения' });
+    } else {
+      res.json({ message: 'Сообщение успешно удалено' });
+    }
+  });
+});
+
+app.post('/lastMessages/:id.json', (req, res) => {
+  const messageId = req.params.id;
+  const { message } = req.body;
+
+  pool.query('UPDATE lastMessages SET message = $1 WHERE id = $2', [message, messageId], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при редактировании сообщения' });
+    } else {
+      res.json({ message: 'Сообщение успешно отредактировано' });
+    }
+  });
+});
+
+app.post('/createUser', (req, res) => {
+  const { email, password } = req.body;
+
+  pool.query('SELECT * FROM users WHERE email = $1', [email], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
+    } else {
+      if (result.rows.length > 0) {
+        res.status(400).json({ error: 'Пользователь с таким email уже существует' });
+      } else {
+        pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, password], (err, result) => {
+          if (err) {
+            console.error('Ошибка выполнения запроса', err);
+            res.status(500).json({ error: 'Произошла ошибка при создании пользователя' });
+          } else {
+            res.status(201).json({ message: 'Пользователь успешно создан' });
+          }
+        });
+      }
     }
   });
 });
