@@ -49,7 +49,7 @@ function RegModal({ handleVisible, isVisible }) {
         }
     
         try {
-            const response = await fetch('http://localhost:3000/createUser', {
+            const response = await fetch('https://twitter1-g0o3.onrender.com/createUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
