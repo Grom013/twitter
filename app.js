@@ -12,7 +12,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 const pool = new Pool({
   user: 'twitter_production_tj6f_user',
   host: 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
@@ -117,19 +116,17 @@ app.post('/createUser', (req, res) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
       res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
+    } else if (result.rows.length > 0) {
+      res.status(400).json({ error: 'Пользователь с таким email уже существует' });
     } else {
-      if (result.rows.length > 0) {
-        res.status(400).json({ error: 'Пользователь с таким email уже существует' });
-      } else {
-        pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, password], (err, result) => {
-          if (err) {
-            console.error('Ошибка выполнения запроса', err);
-            res.status(500).json({ error: 'Произошла ошибка при создании пользователя' });
-          } else {
-            res.status(201).json({ message: 'Пользователь успешно создан' });
-          }
-        });
-      }
+      pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, password], (err, result) => {
+        if (err) {
+          console.error('Ошибка выполнения запроса', err);
+          res.status(500).json({ error: 'Произошла ошибка при создании пользователя' });
+        } else {
+          res.status(201).json({ message: 'Пользователь успешно создан' });
+        }
+      });
     }
   });
 });
