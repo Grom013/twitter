@@ -41,9 +41,8 @@ function RegModal({ handleVisible, isVisible }) {
         }        
         if (confirmPassword !== userData.password) {
             setErrorConfirmPassword('Пароли не совпадают');
-            return; // Добавлено условие, чтобы запрос не отправлялся
+            return; 
         }
-        // Проверка других ошибок
         if (errorMessage || errorPassword || errorConfirmPassword) {
             return; 
         }
