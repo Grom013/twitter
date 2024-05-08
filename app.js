@@ -39,7 +39,7 @@ app.get('/lastMessages.json', (req, res) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
     } else {
-      const lastMessagesData = result.rows; // Объявляем переменную с помощью const
+      const lastMessagesData = result.rows;
       res.json(lastMessagesData);
     }
   });
@@ -50,7 +50,7 @@ app.get('/blogs.json', (req, res) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
     } else {
-      const blogsData = result.rows; // Объявляем переменную с помощью const
+      const blogsData = result.rows;
       res.json(blogsData);
     }
   });
