@@ -6,8 +6,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
 
@@ -19,6 +20,7 @@ const pool = new Pool({
   port: 5432,
   ssl: true,
 });
+app.use(express.json());
 
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
@@ -37,7 +39,7 @@ app.get('/lastMessages.json', (req, res) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
     } else {
-      const lastMessagesData = result.rows; // Объявляем переменную с помощью const
+      const lastMessagesData = result.rows;
       res.json(lastMessagesData);
     }
   });
@@ -48,7 +50,7 @@ app.get('/blogs.json', (req, res) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
     } else {
-      const blogsData = result.rows; // Объявляем переменную с помощью const
+      const blogsData = result.rows;
       res.json(blogsData);
     }
   });
