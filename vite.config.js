@@ -13,6 +13,7 @@ export default defineConfig({
       '/topics.json': 'https://twitter1-g0o3.onrender.com/topics.json',
       '/blogs.json': 'https://twitter1-g0o3.onrender.com/blogs.json',
       '/lastMessages.json': 'https://twitter1-g0o3.onrender.com/lastMessages.json',
+      '/createUser': 'https://twitter1-g0o3.onrender.com/createUser',
     },
   },
 });

@@ -68,6 +68,7 @@ app.delete('/lastMessages/:id.json', (req, res) => {
     }
   });
 });
+
 app.post('/lastMessages.json', (req, res) => {
   const { message } = req.body;
 
@@ -107,6 +108,29 @@ app.post('/lastMessages/:id.json', (req, res) => {
     }
   });
 });
+
+app.post('/createUser', (req, res) => {
+  const { email, password } = req.body;
+
+  pool.query('SELECT * FROM users WHERE email = $1', [email], (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса', err);
+      res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
+    } else if (result.rows.length > 0) {
+      res.status(400).json({ error: 'Пользователь с таким email уже существует' });
+    } else {
+      pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, password], (err, result) => {
+        if (err) {
+          console.error('Ошибка выполнения запроса', err);
+          res.status(500).json({ error: 'Произошла ошибка при создании пользователя' });
+        } else {
+          res.status(201).json({ message: 'Пользователь успешно создан' });
+        }
+      });
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
