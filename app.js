@@ -2,12 +2,12 @@ import express from 'express';
 import pkg from 'pg';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
+
 const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
-
 
 const pool = new Pool({
   user: 'twitter_production_tj6f_user',
@@ -127,7 +127,6 @@ app.post('/createUser', async (req, res) => {
   }
 });
 
-
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
@@ -135,28 +134,24 @@ app.post('/login', (req, res) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
       res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
-    } else {
-      if (result.rows.length > 0) {
-        const user = result.rows[0];
-        try {
-          const match = await bcrypt.compare(password, user.password);
-          if (match) {
-            res.status(200).json({ message: 'Успешная аутентификация' });
-          } else {
-            res.status(401).json({ error: 'Неверный пароль' });
-          }
-        } catch (error) {
-          console.error('Ошибка при сравнении паролей:', error);
-          res.status(500).json({ error: 'Произошла ошибка при аутентификации' });
+    } else if (result.rows.length > 0) {
+      const user = result.rows[0];
+      try {
+        const match = await bcrypt.compare(password, user.password);
+        if (match) {
+          res.status(200).json({ message: 'Успешная аутентификация' });
+        } else {
+          res.status(401).json({ error: 'Неверный пароль' });
         }
-      } else {
-        res.status(404).json({ error: 'Пользователь с таким email не найден' });
+      } catch (error) {
+        console.error('Ошибка при сравнении паролей:', error);
+        res.status(500).json({ error: 'Произошла ошибка при аутентификации' });
       }
+    } else {
+      res.status(404).json({ error: 'Пользователь с таким email не найден' });
     }
   });
 });
-
-
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
