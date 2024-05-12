@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import mail from "../../public/assets/mail";
 import './RegModal.css'
 
-function RegModal({ handleVisible, isVisible }) {
+function RegModal({ handleVisible, isVisibleReg }) {
     const [userData, setUserData] = useState({
         email: '',
         password: '',
@@ -84,7 +84,7 @@ function RegModal({ handleVisible, isVisible }) {
     
     
     return (
-        <form className="regModal" id="regModal" style={{ display: isVisible ? 'block' : 'none' }} onSubmit={handleSubmit}>
+        <form className="regModal" id="regModal" style={{ display: isVisibleReg ? 'block' : 'none' }} onSubmit={handleSubmit}>
             <div className="modal-content">
                 <div className="mobile-handler"></div>
                 <div className="reg-modal-first-line">
