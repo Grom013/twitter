@@ -1,16 +1,13 @@
 import express from 'express';
 import pkg from 'pg';
+import cors from 'cors';
+import bcrypt from 'bcrypt';
 
 const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
+app.use(cors());
 
 const pool = new Pool({
   user: 'twitter_production_tj6f_user',
@@ -109,24 +106,49 @@ app.post('/lastMessages/:id.json', (req, res) => {
   });
 });
 
-app.post('/createUser', (req, res) => {
+app.post('/createUser', async (req, res) => {
   const { email, password } = req.body;
 
-  pool.query('SELECT * FROM users WHERE email = $1', [email], (err, result) => {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, hashedPassword], (err, result) => {
+      if (err) {
+        console.error('Ошибка выполнения запроса', err);
+        res.status(500).json({ error: 'Произошла ошибка при создании пользователя' });
+      } else {
+        res.status(201).json({ message: 'Пользователь успешно создан' });
+      }
+    });
+  } catch (error) {
+    console.error('Ошибка при хешировании пароля:', error);
+    res.status(500).json({ error: 'Произошла ошибка при создании пользователя' });
+  }
+});
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  pool.query('SELECT * FROM users WHERE email = $1', [email], async (err, result) => {
     if (err) {
       console.error('Ошибка выполнения запроса', err);
       res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
     } else if (result.rows.length > 0) {
-      res.status(400).json({ error: 'Пользователь с таким email уже существует' });
-    } else {
-      pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, password], (err, result) => {
-        if (err) {
-          console.error('Ошибка выполнения запроса', err);
-          res.status(500).json({ error: 'Произошла ошибка при создании пользователя' });
+      const user = result.rows[0];
+      try {
+        const match = await bcrypt.compare(password, user.password);
+        if (match) {
+          res.status(200).json({ message: 'Успешная аутентификация' });
         } else {
-          res.status(201).json({ message: 'Пользователь успешно создан' });
+          res.status(401).json({ error: 'Неверный пароль' });
         }
-      });
+      } catch (error) {
+        console.error('Ошибка при сравнении паролей:', error);
+        res.status(500).json({ error: 'Произошла ошибка при аутентификации' });
+      }
+    } else {
+      res.status(404).json({ error: 'Пользователь с таким email не найден' });
     }
   });
 });
