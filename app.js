@@ -2,12 +2,16 @@ import express from 'express';
 import pkg from 'pg';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
+import crypto from 'crypto'; 
+import cookieParser from 'cookie-parser'; 
 
 const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
 
 const pool = new Pool({
   user: 'twitter_production_tj6f_user',
@@ -17,7 +21,6 @@ const pool = new Pool({
   port: 5432,
   ssl: true,
 });
-app.use(express.json());
 
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
@@ -127,30 +130,34 @@ app.post('/createUser', async (req, res) => {
   }
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
-  pool.query('SELECT * FROM users WHERE email = $1', [email], async (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-      res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
-    } else if (result.rows.length > 0) {
+  try {
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+
+    if (result.rows.length > 0) {
       const user = result.rows[0];
-      try {
-        const match = await bcrypt.compare(password, user.password);
-        if (match) {
-          res.status(200).json({ message: 'Успешная аутентификация' });
-        } else {
-          res.status(401).json({ error: 'Неверный пароль' });
-        }
-      } catch (error) {
-        console.error('Ошибка при сравнении паролей:', error);
-        res.status(500).json({ error: 'Произошла ошибка при аутентификации' });
+
+      if (user.password === password) {
+        const token = crypto.randomUUID();  
+
+        await pool.query('INSERT INTO sessions (email, token) VALUES ($1, $2)', [email, token]);
+
+        res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 3600000 });
+        res.cookie('email', email, { httpOnly: true, secure: true, maxAge: 3600000 });
+
+        res.status(200).json({ message: 'Успешная аутентификация' });
+      } else {
+        res.status(401).json({ error: 'Неверный пароль' });
       }
     } else {
       res.status(404).json({ error: 'Пользователь с таким email не найден' });
     }
-  });
+  } catch (err) {
+    console.error('Ошибка выполнения запроса', err);
+    res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
+  }
 });
 
 app.listen(port, () => {
