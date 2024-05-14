@@ -2,8 +2,8 @@ import express from 'express';
 import pkg from 'pg';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
-import crypto from 'crypto'; 
-import cookieParser from 'cookie-parser'; 
+import crypto from 'crypto';
+import cookieParser from 'cookie-parser';
 
 const { Pool } = pkg;
 const app = express();
@@ -140,7 +140,7 @@ app.post('/login', async (req, res) => {
       const user = result.rows[0];
 
       if (user.password === password) {
-        const token = crypto.randomUUID();  
+        const token = crypto.randomUUID();
 
         await pool.query('INSERT INTO sessions (email, token) VALUES ($1, $2)', [email, token]);
 
