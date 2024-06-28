@@ -14,6 +14,7 @@ export default defineConfig({
       '/blogs.json': 'https://twitter1-g0o3.onrender.com/blogs.json',
       '/lastMessages.json': 'https://twitter1-g0o3.onrender.com/lastMessages.json',
       '/createUser': 'https://twitter1-g0o3.onrender.com/createUser',
+      '/login': 'https://twitter1-g0o3.onrender.com/login',
     },
   },
 });

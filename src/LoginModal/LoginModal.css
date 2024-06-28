@@ -1,4 +1,4 @@
-.regModal {
+.loginModal {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -91,4 +91,3 @@
 .submit-btn:hover {
     background-color: #0056b3;
 }
-
