@@ -145,10 +145,10 @@ app.post('/login', async (req, res) => {
 
     if (result.rows.length > 0) {
       const user = result.rows[0];
+      const passwordMatch = await bcrypt.compare(password, user.password);
 
-      if (user.password === password) {
+      if (passwordMatch) {
         const token = crypto.randomUUID();
-
         await pool.query('INSERT INTO sessions (email, token) VALUES ($1, $2)', [email, token]);
 
         res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 3600000 });
