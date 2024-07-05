@@ -9,6 +9,12 @@ const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
@@ -21,6 +27,7 @@ const pool = new Pool({
   port: 5432,
   ssl: true,
 });
+app.use(express.json());
 
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
@@ -138,10 +145,10 @@ app.post('/login', async (req, res) => {
 
     if (result.rows.length > 0) {
       const user = result.rows[0];
+      const passwordMatch = await bcrypt.compare(password, user.password);
 
-      if (user.password === password) {
+      if (passwordMatch) {
         const token = crypto.randomUUID();
-
         await pool.query('INSERT INTO sessions (email, token) VALUES ($1, $2)', [email, token]);
 
         res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 3600000 });
