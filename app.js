@@ -20,10 +20,10 @@ app.use(cookieParser());
 app.use(express.json());
 
 const pool = new Pool({
-  user: 'twitter_production_tj6f_user',
-  host: 'dpg-co6qgumv3ddc73c79nr0-a.oregon-postgres.render.com',
-  database: 'twitter_production_tj6f',
-  password: 'tAlg5YJAHimpM9tZNiUM5J0hnTkCAfYa',
+  user: 'twitter_production1_user',
+  host: 'dpg-cq41fdjv2p9s73egep7g-a',
+  database: 'twitter_production1',
+  password: '9MVG5pxnNUp2yim109fNUSTB1NH80Fsf',
   port: 5432,
   ssl: true,
 });
