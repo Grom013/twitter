@@ -10,11 +10,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/topics.json': 'https://twitter1-g0o3.onrender.com/topics.json',
-      '/blogs.json': 'https://twitter1-g0o3.onrender.com/blogs.json',
-      '/lastMessages.json': 'https://twitter1-g0o3.onrender.com/lastMessages.json',
-      '/createUser': 'https://twitter1-g0o3.onrender.com/createUser',
-      '/login': 'https://twitter1-g0o3.onrender.com/login',
+      '/topics.json': 'http://localhost:3000/topics.json',
+      '/blogs.json': 'http://localhost:3000/blogs.json',
+      '/lastMessages.json': 'http://localhost:3000/lastMessages.json',
+      '/createUser': 'http://localhost:3000/createUser',
+      '/login': 'http://localhost:3000/login',
+      '/feed': 'http://localhost:3000/feed'
     },
   },
 });
