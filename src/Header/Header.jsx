@@ -12,6 +12,7 @@ function Header() {
       const handleVisibleLogin = () => {
             setIsVisibleLogin(prevVisible => !prevVisible)
       }
+      
   return (
         <div className="container">
             <RegModal handleVisible={handleVisible} isVisibleReg={isVisibleReg}/>
