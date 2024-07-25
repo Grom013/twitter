@@ -155,7 +155,7 @@ app.post('/login', async (req, res) => {
         res.cookie('token', token, { httpOnly: true });
         res.cookie('email', email, { httpOnly: true });
 
-        res.status(200).json({ message: 'Успешная аутентификация', email,token });
+        res.status(200).json({ message: 'Успешная аутентификация', email, token });
       } else {
         res.status(401).json({ error: 'Неверный пароль' });
       }
@@ -173,13 +173,13 @@ async function isValidToken(token) {
     const result = await pool.query('SELECT created_at FROM sessions WHERE token = $1', [token]);
 
     if (result.rows.length === 0) {
-      return false; 
+      return false;
     }
 
     const { created_at } = result.rows[0];
     const createdAt = new Date(created_at);
 
-    const tokenValidityPeriod = 3*60*60 * 1000 +30000; 
+    const tokenValidityPeriod = 3 * 60 * 60 * 1000 + 30000;
 
     const now = new Date();
     const tokenExpiry = new Date(createdAt.getTime() + tokenValidityPeriod);
@@ -191,16 +191,15 @@ async function isValidToken(token) {
   }
 }
 
-
 app.get('/feed', async (req, res) => {
-  const token = req.cookies.token;
+  const { token } = req.cookies;
 
-  if (!token || !( await isValidToken(token))) {
+  if (!token || !(await isValidToken(token))) {
     res.clearCookie('token');
     res.clearCookie('email');
     return res.redirect('/');
   }
-  return res.send('страница FEED')
+  return res.send('страница FEED');
 });
 
 app.listen(port, () => {
