@@ -4,7 +4,6 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import cookieParser from 'cookie-parser';
-import { error } from 'console';
 
 const { Pool } = pkg;
 const app = express();
