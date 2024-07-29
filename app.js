@@ -151,10 +151,10 @@ app.post('/login', async (req, res) => {
         const token = crypto.randomUUID();
         await pool.query('INSERT INTO sessions (email, token) VALUES ($1, $2)', [email, token]);
 
-        res.cookie('token', token, { httpOnly: true, secure: true, maxAge: 3600000 });
-        res.cookie('email', email, { httpOnly: true, secure: true, maxAge: 3600000 });
+        res.cookie('token', token, { httpOnly: true });
+        res.cookie('email', email, { httpOnly: true });
 
-        res.status(200).json({ message: 'Успешная аутентификация' });
+        res.status(200).json({ message: 'Успешная аутентификация', email, token });
       } else {
         res.status(401).json({ error: 'Неверный пароль' });
       }
@@ -165,6 +165,40 @@ app.post('/login', async (req, res) => {
     console.error('Ошибка выполнения запроса', err);
     res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
   }
+});
+
+async function isValidToken(token) {
+  try {
+    const result = await pool.query('SELECT created_at FROM sessions WHERE token = $1', [token]);
+
+    if (result.rows.length === 0) {
+      return false;
+    }
+
+    const { created_at } = result.rows[0];
+    const createdAt = new Date(created_at);
+
+    const tokenValidityPeriod = 3 * 60 * 60 * 1000 + 30000;
+
+    const now = new Date();
+    const tokenExpiry = new Date(createdAt.getTime() + tokenValidityPeriod);
+
+    return now <= tokenExpiry;
+  } catch (error) {
+    console.error('Error checking token validity:', error);
+    return false;
+  }
+}
+
+app.get('/feed', async (req, res) => {
+  const { token } = req.cookies;
+
+  if (!token || !(await isValidToken(token))) {
+    res.clearCookie('token');
+    res.clearCookie('email');
+    return res.redirect('/');
+  }
+  return res.send('страница FEED');
 });
 
 app.listen(port, () => {
