@@ -167,38 +167,39 @@ app.post('/login', async (req, res) => {
   }
 });
 
-async function isValidToken(token) {
-  try {
-    const result = await pool.query('SELECT created_at FROM sessions WHERE token = $1', [token]);
+// async function isValidToken(token) {
+//   try {
+//     const result = await pool.query('SELECT created_at FROM sessions WHERE token = $1', [token]);
 
-    if (result.rows.length === 0) {
-      return false;
-    }
+//     if (result.rows.length === 0) {
+//       return false;
+//     }
 
-    const { created_at } = result.rows[0];
-    const createdAt = new Date(created_at);
+//     const { created_at } = result.rows[0];
+//     const createdAt = new Date(created_at);
 
-    const tokenValidityPeriod = 3 * 60 * 60 * 1000 + 30000;
+//     const tokenValidityPeriod = 3 * 60 * 60 * 1000 + 30000;
 
-    const now = new Date();
-    const tokenExpiry = new Date(createdAt.getTime() + tokenValidityPeriod);
+//     const now = new Date();
+//     const tokenExpiry = new Date(createdAt.getTime() + tokenValidityPeriod);
 
-    return now <= tokenExpiry;
-  } catch (error) {
-    console.error('Error checking token validity:', error);
-    return false;
-  }
-}
+//     return now <= tokenExpiry;
+//   } catch (error) {
+//     console.error('Error checking token validity:', error);
+//     return false;
+//   }
+// }
 
-app.get('/feed', (req, res) =>
-// const { token } = req.cookies;
+app.get('/feed', async (req, res) => {
+  console.log('GET /feed called');
 
   // if (!token || !(await isValidToken(token))) {
   //   res.clearCookie('token');
   //   res.clearCookie('email');
   //   return res.redirect('/');
   // }
-  res.send('страница FEED'));
+  return res.send('страница FEED');
+});
 
 // app.get('/clearCookie', async (req, res) => {
 
@@ -211,11 +212,12 @@ app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
 
+
 // из-за того что перед маршрутом нет полного адреса
-// неправильный метод get
+// неправильный метод get 
 // неправильный метод send
 // из-за async
-// из-за return +
+// из-за return 
 // req вместо res
 // файл не сохранился
 // не в ту ветку задеплоил
