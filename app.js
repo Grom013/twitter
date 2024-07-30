@@ -9,10 +9,15 @@ const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 app.use(cors({
   origin: 'https://twitter-a6rh.onrender.com',
-  methods: 'GET, POST, PUT, DELETE',
-  allowedHeaders: 'Content-Type, Authorization',
+  methods: ['GET', 'POST', 'DELETE'],
 }));
 app.use(cookieParser());
 app.use(express.json());
@@ -165,46 +170,39 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// async function isValidToken(token) {
-//   try {
-//     const result = await pool.query('SELECT created_at FROM sessions WHERE token = $1', [token]);
+async function isValidToken(token) {
+  try {
+    const result = await pool.query('SELECT created_at FROM sessions WHERE token = $1', [token]);
 
-//     if (result.rows.length === 0) {
-//       return false;
-//     }
+    if (result.rows.length === 0) {
+      return false;
+    }
 
-//     const { created_at } = result.rows[0];
-//     const createdAt = new Date(created_at);
+    const { created_at } = result.rows[0];
+    const createdAt = new Date(created_at);
 
-//     const tokenValidityPeriod = 3 * 60 * 60 * 1000 + 30000;
+    const tokenValidityPeriod = 3 * 60 * 60 * 1000 + 30000;
 
-//     const now = new Date();
-//     const tokenExpiry = new Date(createdAt.getTime() + tokenValidityPeriod);
+    const now = new Date();
+    const tokenExpiry = new Date(createdAt.getTime() + tokenValidityPeriod);
 
-//     return now <= tokenExpiry;
-//   } catch (error) {
-//     console.error('Error checking token validity:', error);
-//     return false;
-//   }
-// }
+    return now <= tokenExpiry;
+  } catch (error) {
+    console.error('Error checking token validity:', error);
+    return false;
+  }
+}
 
 app.get('/feed', async (req, res) => {
-  // const { token } = req.cookies;
+  const { token } = req.cookies;
 
-  // if (!token || !(await isValidToken(token))) {
-  //   res.clearCookie('token');
-  //   res.clearCookie('email');
-  //   return res.redirect('/');
-  // }
+  if (!token || !(await isValidToken(token))) {
+    res.clearCookie('token');
+    res.clearCookie('email');
+    return res.redirect('/');
+  }
   return res.send('страница FEED');
 });
-
-// app.get('/clearCookie', async (req, res) => {
-
-//     res.clearCookie('token');
-//     res.clearCookie('email');
-//     return res.send('clearCookie')
-// });
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
