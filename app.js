@@ -191,15 +191,22 @@ async function isValidToken(token) {
 }
 
 app.get('/feed', async (req, res) => {
-  const { token } = req.cookies;
+  // const { token } = req.cookies;
 
-  if (!token || !(await isValidToken(token))) {
-    res.clearCookie('token');
-    res.clearCookie('email');
-    return res.redirect('/');
-  }
+  // if (!token || !(await isValidToken(token))) {
+  //   res.clearCookie('token');
+  //   res.clearCookie('email');
+  //   return res.redirect('/');
+  // }
   return res.send('страница FEED');
 });
+
+// app.get('/clearCookie', async (req, res) => {
+
+//     res.clearCookie('token');
+//     res.clearCookie('email');
+//     return res.send('clearCookie')
+// });
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
