@@ -10,17 +10,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/topics.json': 'http://localhost:3000',
-      '/blogs.json': 'http://localhost:3000',
-      '/lastMessages.json': 'http://localhost:3000',
-      '/createUser': 'http://localhost:3000',
-      '/login': 'http://localhost:3000',
       '/feed': {
         target: 'https://twitter1-g0o3.onrender.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/feed/, ''),
       },
-      '/clearCookie': 'http://localhost:3000',
     },
   },
 });
