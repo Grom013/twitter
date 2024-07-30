@@ -9,13 +9,11 @@ const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
-app.use(cors());
+app.use(cors({
+  origin: 'https://twitter-a6rh.onrender.com',
+  methods: 'GET, POST, PUT, DELETE',
+  allowedHeaders: 'Content-Type, Authorization',
+}));
 app.use(cookieParser());
 app.use(express.json());
 
