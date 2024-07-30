@@ -15,6 +15,7 @@
     "prefer-arrow-callback": 0,
     "camelcase": "off",
     "no-undef": "off",
+    "implicit-arrow-linebreak": "off",
     "no-promise-executor-return": "off",
     "mocha/prefer-arrow-callback": 2,
     "linebreak-style": 0,
