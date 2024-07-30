@@ -9,13 +9,13 @@ const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
-app.use(cors());
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   next();
+// });
+// app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
@@ -190,14 +190,16 @@ app.use(express.json());
 //   }
 // }
 
-app.get('/feed', (req, res) =>
+app.get('/feed', async (req, res) => {
+  // const { token } = req.cookies;
 
   // if (!token || !(await isValidToken(token))) {
   //   res.clearCookie('token');
   //   res.clearCookie('email');
   //   return res.redirect('/');
   // }
-  res.send('страница FEED'));
+  return res.send('страница FEED');
+});
 
 // app.get('/clearCookie', async (req, res) => {
 
@@ -210,11 +212,12 @@ app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
 
+
 // из-за того что перед маршрутом нет полного адреса
-// неправильный метод get
+// неправильный метод get 
 // неправильный метод send
 // из-за async
-// из-за return
+// из-за return 
 // req вместо res
 // файл не сохранился
 // не в ту ветку задеплоил
