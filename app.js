@@ -15,7 +15,10 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-app.use(cors());
+app.use(cors({
+  origin: 'https://twitter-a6rh.onrender.com',
+  methods: ['GET', 'POST', 'DELETE'],
+}));
 app.use(cookieParser());
 app.use(express.json());
 
@@ -190,22 +193,16 @@ async function isValidToken(token) {
   }
 }
 
-app.get('/feed', (req, res) =>
-// const { token } = req.cookies;
+app.get('/feed', async (req, res) => {
+  const { token } = req.cookies;
 
-  // if (!token || !(await isValidToken(token))) {
-  //   res.clearCookie('token');
-  //   res.clearCookie('email');
-  //   return res.redirect('/');
-  // }
-  res.send('страница FEED'));
-
-// app.get('/clearCookie', async (req, res) => {
-
-//     res.clearCookie('token');
-//     res.clearCookie('email');
-//     return res.send('clearCookie')
-// });
+  if (!token || !(await isValidToken(token))) {
+    res.clearCookie('token');
+    res.clearCookie('email');
+    return res.redirect('/');
+  }
+  return res.send('страница FEED');
+});
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
@@ -215,7 +212,7 @@ app.listen(port, () => {
 // неправильный метод get
 // неправильный метод send
 // из-за async
-// из-за return +
+// из-за return
 // req вместо res
 // файл не сохранился
 // не в ту ветку задеплоил
