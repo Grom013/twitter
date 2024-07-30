@@ -190,7 +190,7 @@ async function isValidToken(token) {
   }
 }
 
-app.get('/feed', async (req, res) =>
+app.get('/feed',  (req, res) =>
 // const { token } = req.cookies;
 
   // if (!token || !(await isValidToken(token))) {
