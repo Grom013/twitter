@@ -16,7 +16,7 @@ export default defineConfig({
       '/createUser': 'http://localhost:3000/createUser',
       '/login': 'http://localhost:3000/login',
       '/feed': 'http://localhost:3000',
-      '/clearCookie': 'http://localhost:3000'
+      '/clearCookie': 'http://localhost:3000',
     },
   },
 });
