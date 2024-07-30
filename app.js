@@ -15,10 +15,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-app.use(cors({
-  origin: 'https://twitter-a6rh.onrender.com',
-  methods: ['GET', 'POST', 'DELETE'],
-}));
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
