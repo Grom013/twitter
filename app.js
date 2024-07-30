@@ -15,10 +15,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-app.use(cors({
-  origin: 'https://twitter-a6rh.onrender.com',
-  methods: ['GET', 'POST', 'DELETE'],
-}));
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
@@ -208,11 +205,12 @@ app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
 
+
 // из-за того что перед маршрутом нет полного адреса
-// неправильный метод get
+// неправильный метод get 
 // неправильный метод send
 // из-за async
-// из-за return
+// из-за return 
 // req вместо res
 // файл не сохранился
 // не в ту ветку задеплоил
