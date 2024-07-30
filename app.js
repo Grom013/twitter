@@ -190,7 +190,7 @@ app.use(express.json());
 //   }
 // }
 
-app.get('/feed', async (req, res) =>
+app.get('/feed', (req, res) =>
 
   // if (!token || !(await isValidToken(token))) {
   //   res.clearCookie('token');
