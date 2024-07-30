@@ -18,6 +18,8 @@ const port = process.env.PORT || 3000;
 // app.use(cors());
 app.use(cors({
   origin: 'https://twitter-a6rh.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(cookieParser());
 app.use(express.json());
