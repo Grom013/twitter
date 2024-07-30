@@ -15,7 +15,8 @@ export default defineConfig({
       '/lastMessages.json': 'http://localhost:3000/lastMessages.json',
       '/createUser': 'http://localhost:3000/createUser',
       '/login': 'http://localhost:3000/login',
-      '/feed': 'http://localhost:3000/feed',
+      '/feed': 'http://localhost:3000',
+      '/clearCookie': 'http://localhost:3000',
     },
   },
 });

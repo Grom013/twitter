@@ -4,7 +4,6 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import cookieParser from 'cookie-parser';
-import { error } from 'console';
 
 const { Pool } = pkg;
 const app = express();
@@ -191,17 +190,39 @@ async function isValidToken(token) {
   }
 }
 
-app.get('/feed', async (req, res) => {
-  const { token } = req.cookies;
+app.get('/feed', (req, res) =>
+// const { token } = req.cookies;
 
-  if (!token || !(await isValidToken(token))) {
-    res.clearCookie('token');
-    res.clearCookie('email');
-    return res.redirect('/');
-  }
-  return res.send('страница FEED');
-});
+  // if (!token || !(await isValidToken(token))) {
+  //   res.clearCookie('token');
+  //   res.clearCookie('email');
+  //   return res.redirect('/');
+  // }
+  res.send('страница FEED'));
+
+// app.get('/clearCookie', async (req, res) => {
+
+//     res.clearCookie('token');
+//     res.clearCookie('email');
+//     return res.send('clearCookie')
+// });
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
+
+// из-за того что перед маршрутом нет полного адреса
+// неправильный метод get
+// неправильный метод send
+// из-за async
+// из-за return +
+// req вместо res
+// файл не сохранился
+// не в ту ветку задеплоил
+// можем ли мы проверить изменения с ветки deploy
+// не нв тот url захожу
+// не тот сайт проверяю
+// не на тот сайт задеплоил
+// не задеплоилось
+// логи прошли неудачно на гитхаб
+// логи прошли неудачно на рендер
