@@ -28,6 +28,7 @@ const pool = new Pool({
   ssl: true,
 });
 app.use(express.json());
+app.use(express.static('public')); // делает возможным чтобы браузер мог обращаться к файлам которые лежат в папке public с помощью http запроса
 
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
