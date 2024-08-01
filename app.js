@@ -184,9 +184,15 @@ async function isValidToken(token) {
     const now = new Date();
     const tokenExpiry = new Date(createdAt.getTime() + tokenValidityPeriod);
 
-    return now <= tokenExpiry;
+    if (now > tokenExpiry) {
+      // Удаление просроченного токена
+      await pool.query('DELETE FROM sessions WHERE token = $1', [token]);
+      return false;
+    }
+
+    return true;
   } catch (error) {
-    console.error('Error checking token validity:', error);
+    console.error('Ошибка при проверке валидности токена:', error);
     return false;
   }
 }
@@ -197,27 +203,12 @@ app.get('/feed', async (req, res) => {
   if (!token || !(await isValidToken(token))) {
     res.clearCookie('token');
     res.clearCookie('email');
-    return res.redirect('/');
+    return res.status(401).json({ error: 'Неавторизованный доступ. Пожалуйста, выполните вход.' });
   }
+
   return res.send('страница FEED');
 });
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
-
-// из-за того что перед маршрутом нет полного адреса
-// неправильный метод get
-// неправильный метод send
-// из-за async
-// из-за return
-// req вместо res
-// файл не сохранился
-// не в ту ветку задеплоил
-// можем ли мы проверить изменения с ветки deploy
-// не нв тот url захожу
-// не тот сайт проверяю
-// не на тот сайт задеплоил
-// не задеплоилось
-// логи прошли неудачно на гитхаб
-// логи прошли неудачно на рендер
