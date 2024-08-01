@@ -152,8 +152,8 @@ app.post('/login', async (req, res) => {
         const token = crypto.randomUUID();
         await pool.query('INSERT INTO sessions (email, token) VALUES ($1, $2)', [email, token]);
 
-        res.cookie('token', token, { httpOnly: true });
-        res.cookie('email', email, { httpOnly: true });
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'Strict' });
+        res.cookie('email', email, { httpOnly: true, secure: true, sameSite: 'Strict' });        
 
         res.status(200).json({ message: 'Успешная аутентификация', email, token });
       } else {

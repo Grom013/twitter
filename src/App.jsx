@@ -17,10 +17,10 @@ function App() {
             <>
                   <Header/>
                   <Statistic />
-                  <div className="last-messages-wrapper">
+                  {/* <div className="last-messages-wrapper">
                         <LastMessages />
                         <TagsBlogs />
-                  </div>
+                  </div> */}
             </>
       );
 }
