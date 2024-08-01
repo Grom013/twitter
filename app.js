@@ -28,7 +28,7 @@ const pool = new Pool({
   ssl: true,
 });
 app.use(express.json());
-app.use(express.static('public')); // делает возможным чтобы браузер мог обращаться к файлам которые лежат в папке public с помощью http запроса
+app.use(express.static('public')) // делает возможным чтобы браузер мог обращаться к файлам которые лежат в папке public с помощью http запроса 
 
 app.get('/topics.json', (req, res) => {
   pool.query('SELECT * FROM topics', (err, result) => {
@@ -152,8 +152,8 @@ app.post('/login', async (req, res) => {
         const token = crypto.randomUUID();
         await pool.query('INSERT INTO sessions (email, token) VALUES ($1, $2)', [email, token]);
 
-        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'Strict' });
-        res.cookie('email', email, { httpOnly: true, secure: true, sameSite: 'Strict' });        
+        res.cookie('token', token, { httpOnly: true });
+        res.cookie('email', email, { httpOnly: true });
 
         res.status(200).json({ message: 'Успешная аутентификация', email, token });
       } else {
@@ -184,15 +184,9 @@ async function isValidToken(token) {
     const now = new Date();
     const tokenExpiry = new Date(createdAt.getTime() + tokenValidityPeriod);
 
-    if (now > tokenExpiry) {
-      // Удаление просроченного токена
-      await pool.query('DELETE FROM sessions WHERE token = $1', [token]);
-      return false;
-    }
-
-    return true;
+    return now <= tokenExpiry;
   } catch (error) {
-    console.error('Ошибка при проверке валидности токена:', error);
+    console.error('Error checking token validity:', error);
     return false;
   }
 }
@@ -203,12 +197,12 @@ app.get('/feed', async (req, res) => {
   if (!token || !(await isValidToken(token))) {
     res.clearCookie('token');
     res.clearCookie('email');
-    return res.status(401).json({ error: 'Неавторизованный доступ. Пожалуйста, выполните вход.' });
+    return res.redirect('/');
   }
-
   return res.send('страница FEED');
 });
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
+
