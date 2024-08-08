@@ -10,17 +10,19 @@ function App() {
       useEffect(()=>{
             const token = Cookies.get('token')
             if(token){
+                  console.log(token);
                   window.location.replace('/feed')
+                  
             }
       },[])
       return (
             <>
                   <Header/>
                   <Statistic />
-                  <div className="last-messages-wrapper">
+                  {/* <div className="last-messages-wrapper">
                         <LastMessages />
                         <TagsBlogs />
-                  </div>
+                  </div> */}
             </>
       );
 }
