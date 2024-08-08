@@ -183,7 +183,7 @@ async function isValidToken(token) {
     const { created_at } = result.rows[0];
     const createdAt = new Date(created_at);
 
-    const tokenValidityPeriod = 3 * 60 * 60 * 1000 + 30000;
+    const tokenValidityPeriod = 15000;
 
     const now = new Date();
     const tokenExpiry = new Date(createdAt.getTime() + tokenValidityPeriod);
@@ -195,15 +195,15 @@ async function isValidToken(token) {
   }
 }
 
-app.get('/', (req, res) => {
-  const { token } = req.cookies;
+// app.get('/', (req, res) => {
+//   const { token } = req.cookies;
 
-  if (token) {
-    res.redirect('/feed');
-  } else {
-    res.send('Главная страница');
-  }
-});
+//   if (token) {
+//     res.redirect('/feed');
+//   } else {
+//     res.send('Главная страница');
+//   }
+// });
 
 app.get('/feed', async (req, res) => {
   const { token } = req.cookies;
