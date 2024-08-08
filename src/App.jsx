@@ -10,7 +10,9 @@ function App() {
       useEffect(()=>{
             const token = Cookies.get('token')
             if(token){
+                  console.log(token);
                   window.location.replace('/feed')
+                  
             }
       },[])
       return (

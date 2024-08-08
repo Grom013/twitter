@@ -18,7 +18,7 @@ const LoginModal = ({ isVisibleLogin, handleVisibleLogin }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await fetch('https://twitter1-g0o3.onrender.com/login', {
+          const response = await fetch('/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

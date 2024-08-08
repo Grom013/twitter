@@ -20,102 +20,103 @@ app.use(cookieParser());
 app.use(express.json());
 
 const pool = new Pool({
-  user: 'twitter_production1_l7wn_user',
-  host: 'dpg-cq42123v2p9s73eglt8g-a.oregon-postgres.render.com',
-  database: 'twitter_production1_l7wn',
-  password: 'knmczEfr9A3IURHCeKpwzDoNlRqrWRhr',
+  user: 'twitter_production1_igfd_user',
+  host: 'dpg-cqpo08qj1k6c73dtts1g-a.oregon-postgres.render.com',
+  database: 'twitter_production1_igfd',
+  password: 'ysJVTGc53FoH8iY5qVAFnBNmVh3VMZmS',
   port: 5432,
   ssl: true,
 });
+
 app.use(express.json());
-app.use(express.static('public')) // делает возможным чтобы браузер мог обращаться к файлам которые лежат в папке public с помощью http запроса 
+app.use(express.static('public')); // делает возможным чтобы браузер мог обращаться к файлам которые лежат в папке public с помощью http запроса
 
-app.get('/topics.json', (req, res) => {
-  pool.query('SELECT * FROM topics', (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-      res.status(500).json({ error: 'Произошлa ошибка при получении данных' });
-    } else {
-      const topicsData = result.rows;
-      res.json(topicsData);
-    }
-  });
-});
+// app.get('/topics.json', (req, res) => {
+//   pool.query('SELECT * FROM topics', (err, result) => {
+//     if (err) {
+//       console.error('Ошибка выполнения запроса', err);
+//       res.status(500).json({ error: 'Произошлa ошибка при получении данных' });
+//     } else {
+//       const topicsData = result.rows;
+//       res.json(topicsData);
+//     }
+//   });
+// });
 
-app.get('/lastMessages.json', (req, res) => {
-  pool.query('SELECT * FROM lastMessages', (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-    } else {
-      const lastMessagesData = result.rows;
-      res.json(lastMessagesData);
-    }
-  });
-});
+// app.get('/lastMessages.json', (req, res) => {
+//   pool.query('SELECT * FROM lastMessages', (err, result) => {
+//     if (err) {
+//       console.error('Ошибка выполнения запроса', err);
+//     } else {
+//       const lastMessagesData = result.rows;
+//       res.json(lastMessagesData);
+//     }
+//   });
+// });
 
-app.get('/blogs.json', (req, res) => {
-  pool.query('SELECT * FROM blogs', (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-    } else {
-      const blogsData = result.rows;
-      res.json(blogsData);
-    }
-  });
-});
+// app.get('/blogs.json', (req, res) => {
+//   pool.query('SELECT * FROM blogs', (err, result) => {
+//     if (err) {
+//       console.error('Ошибка выполнения запроса', err);
+//     } else {
+//       const blogsData = result.rows;
+//       res.json(blogsData);
+//     }
+//   });
+// });
 
-app.delete('/lastMessages/:id.json', (req, res) => {
-  const messageId = req.params.id;
+// app.delete('/lastMessages/:id.json', (req, res) => {
+//   const messageId = req.params.id;
 
-  pool.query('DELETE FROM lastMessages WHERE id = $1', [messageId], (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-      res.status(500).json({ error: 'Произошла ошибка при удалении сообщения' });
-    } else {
-      res.json({ message: 'Сообщение успешно удалено' });
-    }
-  });
-});
+//   pool.query('DELETE FROM lastMessages WHERE id = $1', [messageId], (err, result) => {
+//     if (err) {
+//       console.error('Ошибка выполнения запроса', err);
+//       res.status(500).json({ error: 'Произошла ошибка при удалении сообщения' });
+//     } else {
+//       res.json({ message: 'Сообщение успешно удалено' });
+//     }
+//   });
+// });
 
-app.post('/lastMessages.json', (req, res) => {
-  const { message } = req.body;
+// app.post('/lastMessages.json', (req, res) => {
+//   const { message } = req.body;
 
-  pool.query('INSERT INTO lastMessages (message) VALUES ($1)', [message], (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-      res.status(500).json({ error: 'Произошла ошибка при создании сообщения' });
-    } else {
-      res.status(201).json({ message: 'Сообщение успешно создано' });
-    }
-  });
-});
+//   pool.query('INSERT INTO lastMessages (message) VALUES ($1)', [message], (err, result) => {
+//     if (err) {
+//       console.error('Ошибка выполнения запроса', err);
+//       res.status(500).json({ error: 'Произошла ошибка при создании сообщения' });
+//     } else {
+//       res.status(201).json({ message: 'Сообщение успешно создано' });
+//     }
+//   });
+// });
 
-app.delete('/lastMessages/:id.json', (req, res) => {
-  const messageId = req.params.id;
+// app.delete('/lastMessages/:id.json', (req, res) => {
+//   const messageId = req.params.id;
 
-  pool.query('DELETE FROM lastMessages WHERE id = $1', [messageId], (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-      res.status(500).json({ error: 'Произошла ошибка при удалении сообщения' });
-    } else {
-      res.json({ message: 'Сообщение успешно удалено' });
-    }
-  });
-});
+//   pool.query('DELETE FROM lastMessages WHERE id = $1', [messageId], (err, result) => {
+//     if (err) {
+//       console.error('Ошибка выполнения запроса', err);
+//       res.status(500).json({ error: 'Произошла ошибка при удалении сообщения' });
+//     } else {
+//       res.json({ message: 'Сообщение успешно удалено' });
+//     }
+//   });
+// });
 
-app.post('/lastMessages/:id.json', (req, res) => {
-  const messageId = req.params.id;
-  const { message } = req.body;
+// app.post('/lastMessages/:id.json', (req, res) => {
+//   const messageId = req.params.id;
+//   const { message } = req.body;
 
-  pool.query('UPDATE lastMessages SET message = $1 WHERE id = $2', [message, messageId], (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-      res.status(500).json({ error: 'Произошла ошибка при редактировании сообщения' });
-    } else {
-      res.json({ message: 'Сообщение успешно отредактировано' });
-    }
-  });
-});
+//   pool.query('UPDATE lastMessages SET message = $1 WHERE id = $2', [message, messageId], (err, result) => {
+//     if (err) {
+//       console.error('Ошибка выполнения запроса', err);
+//       res.status(500).json({ error: 'Произошла ошибка при редактировании сообщения' });
+//     } else {
+//       res.json({ message: 'Сообщение успешно отредактировано' });
+//     }
+//   });
+// });
 
 app.post('/createUser', async (req, res) => {
   const { email, password } = req.body;
@@ -150,7 +151,10 @@ app.post('/login', async (req, res) => {
 
       if (passwordMatch) {
         const token = crypto.randomUUID();
-        await pool.query('INSERT INTO sessions (email, token) VALUES ($1, $2)', [email, token]);
+
+        await pool.query('DELETE FROM sessions WHERE user_id = $1', [user.id]);
+
+        await pool.query('INSERT INTO sessions (user_id, token) VALUES ($1, $2)', [user.id, token]);
 
         res.cookie('token', token, { httpOnly: true });
         res.cookie('email', email, { httpOnly: true });
@@ -163,7 +167,7 @@ app.post('/login', async (req, res) => {
       res.status(404).json({ error: 'Пользователь с таким email не найден' });
     }
   } catch (err) {
-    console.error('Ошибка выполнения запроса', err);
+    console.error('Ошибка при проверке пользователя:', err.message);
     res.status(500).json({ error: 'Произошла ошибка при проверке пользователя' });
   }
 });
@@ -191,6 +195,16 @@ async function isValidToken(token) {
   }
 }
 
+app.get('/', (req, res) => {
+  const { token } = req.cookies;
+
+  if (token) {
+    res.redirect('/feed');
+  } else {
+    res.send('Главная страница');
+  }
+});
+
 app.get('/feed', async (req, res) => {
   const { token } = req.cookies;
 
@@ -199,10 +213,9 @@ app.get('/feed', async (req, res) => {
     res.clearCookie('email');
     return res.redirect('/');
   }
-  return res.send('страница FEED');
+  res.send('страница FEED');
 });
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });
-
