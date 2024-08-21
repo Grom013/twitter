@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import './LoginModal.css';
+import { useNavigate } from 'react-router-dom';
 
 const LoginModal = ({ isVisibleLogin, handleVisibleLogin }) => {
+  const navigate = useNavigate()
     const [userData, setUserData] = useState({
         email: '',
         password: ''
@@ -34,7 +36,7 @@ const LoginModal = ({ isVisibleLogin, handleVisibleLogin }) => {
             document.cookie = `email=${responseData.email}; path=/`;
 
             if(responseData.token){
-              window.location.href = '/feed'
+              navigate('/feed')
             }
           } else {
             const errorData = await response.json();
@@ -44,8 +46,6 @@ const LoginModal = ({ isVisibleLogin, handleVisibleLogin }) => {
           console.error('Произошла ошибка при выполнении запроса:', error);
         }
       };
-      
-      
 
     return (
         <form className="loginModal" id="loginModal" onSubmit={handleSubmit} style={{ display: isVisibleLogin ? 'block' : 'none' }}>
