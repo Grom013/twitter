@@ -1,45 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './LastMessages.css';
-import { fetchData, fetchPictures } from '../../public/assets/fetchData.js';
-import timeFn from '../../public/assets/time.js';
 
-function LastMessages() {
-  const [messages, setMessages] = useState([]);
-  const [pictures, setPictures] = useState([]);
-
-  useEffect(() => {
-    let intervalId;
-
-    async function getData() {
-      try {
-        const data = await fetchData();
-        const pictur = await fetchPictures();
-        setMessages(data.lastMessages.map((message) => ({
-          ...message,
-          originalTimeMessage: message.timeMessage, // сохраняем начальное время сообщения
-        })));
-        setPictures(pictur.pictures);
-      } catch (error) {
-        console.error('Error occurred while fetching data:', error);
-      }
-    }
-
-    getData();
-
-    intervalId = setInterval(() => {
-      setMessages((prevMessages) => prevMessages.map((message) => ({
-        ...message,
-        timeMessage: Date.now() - message.originalTimeMessage, // обновляем относительное время
-      })));
-    }, 60000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  function getAvatarUrl(messageId) {
-    const picture = pictures.find((pic) => pic.id === messageId);
-    return picture ? picture.avatarUrl : '';
-  }
+function LastMessages({messages}) {      
+    
   return (
         <div>
               {messages.length > 0 ? (
@@ -56,7 +19,7 @@ function LastMessages() {
                                                   <div className="message-info-first">
                                                         <div className="post-name">
                                                               <div className="post-main-name">
-                                                                    {message.name}
+                                                                    {message.name}k
                                                                     {' '}
                                                                     {message.lastname}
                                                               </div>
@@ -66,7 +29,7 @@ function LastMessages() {
                                                               </div>
                                                         </div>
                                                         <div className="post-time">
-                                                              {timeFn(Math.floor((Date.now() - message.timeMessage) / 60000))}
+                                                              {/* {timeFn(Math.floor((Date.now() - message.timeMessage) / 60000))} */}
                                                         </div>
                                                   </div>
                                                   <div className="message-desc">{message.message}</div>
