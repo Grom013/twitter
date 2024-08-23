@@ -9,6 +9,8 @@
   },
   "rules": {
     "no-unused-vars": "off",
+    "no-underscore-dangle": ["error", { "allow": ["__dirname", "__filename"] }],
+    "import/prefer-default-export": "off",
     "import/extensions": ["error", "ignorePackages", {"js": "always"}],
     "no-plusplus": "off",
     "no-param-reassign": "off",

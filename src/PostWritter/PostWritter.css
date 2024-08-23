@@ -1,12 +1,29 @@
 .server-message {
-    margin-top: 20px; 
-    padding: 10px; 
-    background-color:  lightgreen;
+    position: absolute;
+    margin-top: 6px;
+    padding: 6px;
+    background-color: lightgreen;
     color: white;
-    border-radius: 5px; 
-    text-align: center; 
-    font-weight: bold; 
-    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+.submit-block {
+    display: flex;
+}
+.circle {
+    margin-right: 20px;
+    width: 60px;
+    height: 60px;
+    border: 3px solid #0057FF;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0057FF;
 }
 .input-post {
     width: 632px; 
@@ -58,3 +75,4 @@
     padding: 19px 66px;
     cursor: pointer
 }
+

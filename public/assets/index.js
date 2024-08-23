@@ -1,5 +1,4 @@
 import mail from './mail.js';
-import { fetchData, fetchPictures } from './fetchData.js';
 import timeFn from './time.js';
 
 const closeModal = document.querySelectorAll('.close');
