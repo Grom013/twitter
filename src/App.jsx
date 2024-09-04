@@ -21,7 +21,6 @@ function App() {
                         <Route path='/' element={<Header/>}/>
                         <Route  path='/feed' element={<FeedPage/>}/>
                   </Routes>
-                  <Link to={'/feed'}>Feed</Link>
             </>
       );
 }

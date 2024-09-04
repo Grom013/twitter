@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { fetchPosts } from "../../public/assets/fetchData";
-import LastMessages from "../LastMessages/LastMessages";
 import PostWritter from "../PostWritter/PostWritter";
+import PostsFeed from "../LastMessages/PostsFeed";
 
 function FeedPage() {
-  const [messages, setMessages] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const getPosts = async () => {
       try {
         const data = await fetchPosts();
-        setMessages(data);
+        setPosts(data);
       } catch (error) {
         setError(error.message);
       }
@@ -19,28 +19,36 @@ function FeedPage() {
     getPosts();
   }, []); 
 
-  const handleNewPost = async (newMessage) => {
+  const handleNewPost = async (newMessage, imgUrl) => {
     try {
-      await fetch('/posts', {
+      const response = await fetch('/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: newMessage }),
+        body: JSON.stringify({ message: newMessage, imgUrl }), // Отправка данных
       });
-
-      const updatedMessages = await fetchPosts();
-      setMessages(updatedMessages);
+  
+      if (!response.ok) {
+        throw new Error('Сетевая ошибка');
+      }
+  
+      const result = await response.json();
+      console.log(result); // Для отладки
+  
+      const updatedPosts = await fetchPosts();
+      setPosts(updatedPosts);
     } catch (error) {
       setError(error.message);
     }
   };
+  
 
   return (
     <div className="last-messages-wrapper">
       <PostWritter onNewPost={handleNewPost} />
       {error && <div className="error-message">{error}</div>}
-      <LastMessages messages={messages} />
+      <PostsFeed posts={posts} />
     </div>
   );
 }

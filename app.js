@@ -38,16 +38,25 @@ app.get('/posts', (req, res) => {
   });
 });
 
-app.post('/posts', (req, res) => {
-  const { message } = req.body;
+app.post('/posts', async (req, res) => {
+  const { message, imgUrl } = req.body; // Извлечение данных из тела запроса
 
-  pool.query('INSERT INTO posts (message) VALUES ($1)', [message], (err, result) => {
-    if (err) {
-      console.error('Ошибка выполнения запроса', err);
-      return res.status(500).json({ error: 'Произошла ошибка при создании сообщения' });
-    }
-    res.status(201).json({ message: 'Сообщение успешно создано' });
-  });
+  try {
+    // Вставка данных в таблицу
+    const result = await pool.query(
+      'INSERT INTO posts (message, img_url) VALUES ($1, $2) RETURNING *',
+      [message, imgUrl],
+    );
+
+    // Отправка ответа клиенту
+    res.status(201).json({
+      message: 'Сообщение успешно создано',
+      post: result.rows[0], // Возвращаем созданное сообщение
+    });
+  } catch (err) {
+    console.error('Ошибка выполнения запроса', err);
+    res.status(500).json({ error: 'Произошла ошибка при создании сообщения' });
+  }
 });
 
 app.post('/createUser', async (req, res) => {
