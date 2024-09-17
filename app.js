@@ -20,10 +20,10 @@ app.use(express.json());
 app.use(express.static('public'));
 
 const pool = new Pool({
-  user: 'twitter_production1_igfd_user',
-  host: 'dpg-cqpo08qj1k6c73dtts1g-a.oregon-postgres.render.com',
-  database: 'twitter_production1_igfd',
-  password: 'ysJVTGc53FoH8iY5qVAFnBNmVh3VMZmS',
+  user: 'dbname_c3b7_user',
+  host: 'dpg-cre0073v2p9s73co1dq0-a.oregon-postgres.render.com',
+  database: 'dbname_c3b7',
+  password: 'pGOCtowGGmLo6S59wacVDO2FAJHS5hXo',
   port: 5432,
   ssl: true,
 });
